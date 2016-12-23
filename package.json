@@ -2,7 +2,10 @@
     "author": "Pavol Risa",
     "homepage": "risapav@gmail.com",
     "name": "TotalJsWebApplication",
-    "url" : "https://github.com/risapav/TotalJsWebApplication",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/risapav/TotalJsWebApplication"
+    },
     "description": "App BackEnd-FrontEnd for total.js using AMD and marionette",
     "version": "1.0.0",
     "keywords": ["util", "functional", "server", "client", "browser"],   
@@ -18,9 +21,8 @@
         "start": "node server.js"
     },
     "devDependencies": {
-        "rjs-build-analysis": "latest",
         "webpack": "latest",
         "bower": "latest"
     },
-    "license": "MISC"
+    "license": "MIT"
 }
