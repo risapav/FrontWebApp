@@ -18,6 +18,8 @@
         "node": "latest"
     },
     "scripts": {
+        "webpack": "webpack --config webpack.config.js",
+        "": "",
         "start": "node server.js"
     },
     "devDependencies": {
