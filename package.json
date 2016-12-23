@@ -15,7 +15,8 @@
         "total.js": "latest"
     },
     "engines": {
-        "node": "latest"
+        "node": "latest",
+        "webpack": "latest"
     },
     "scripts": {
         "webpack": "webpack --config webpack.config.js",
