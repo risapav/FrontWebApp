@@ -3,5 +3,5 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
+require("!style!css!./css/style.css");
+document.write("It works.");

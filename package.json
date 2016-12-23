@@ -2,10 +2,10 @@
     "author": "Pavol Risa",
     "homepage": "risapav@gmail.com",
     "name": "TotalJsWebApplication",
+    "url" : "https://github.com/risapav/TotalJsWebApplication",
     "description": "App BackEnd-FrontEnd for total.js using AMD and marionette",
     "version": "1.0.0",
-    "keywords": ["util", "functional", "server", "client", "browser"],
-    
+    "keywords": ["util", "functional", "server", "client", "browser"],   
     "contributors": [],
     "dependencies": {
         "mysql": "latest",
@@ -19,31 +19,8 @@
     },
     "devDependencies": {
         "rjs-build-analysis": "latest",
-        "bower": "latest",
-        "grunt": "latest",
-        "grunt-cli": "latest",
-        "grunt-bower-installer": "latest",
-        "grunt-concurrent": "latest",
-        "grunt-contrib-clean": "latest",
-        "grunt-contrib-compress": "latest",
-        "grunt-contrib-connect": "latest",
-        "grunt-contrib-copy": "latest",
-        "grunt-contrib-jshint": "latest",
-        "grunt-contrib-htmlmin": "latest",    
-        "grunt-contrib-less": "latest",
-        "grunt-contrib-requirejs": "latest",
-        "grunt-contrib-watch": "latest",
-        "grunt-copy-changed": "latest",
-        "grunt-exec": "latest",
-        "grunt-execute": "latest",
-        "grunt-jsdoc": "latest",
-        "grunt-jsdox": "latest",
-        "grunt-open": "latest",
-        "grunt-sync": "latest",
-        "grunt-trimtrailingspaces": "latest",
-        "jsdoc": "latest",
-        "load-grunt-config": "latest",
-        "time-grunt": "latest"
+        "webpack": "latest",
+        "bower": "latest"
     },
     "license": "MISC"
 }
