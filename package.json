@@ -17,7 +17,9 @@
     "engines": {
         "node": "latest",
         "webpack": "latest",
-        "webpack-uglify-js-plugin": "latest"
+        "webpack-uglify-js-plugin": "latest",
+        "style-loader": "latest",
+        "css-loader": "latest"
     },
     "scripts": {
         "webpack": "webpack --config webpack.config.js",
