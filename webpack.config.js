@@ -18,9 +18,7 @@ module.exports = {
         // Alternative syntax:
         { test: /\.css$/, loaders: ["style", "css"] }
     ], 
-    plugins: [
-
-        
+    plugins: [ 
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false

@@ -16,7 +16,8 @@
     },
     "engines": {
         "node": "latest",
-        "webpack": "latest"
+        "webpack": "latest",
+        "webpack-uglify-js-plugin": "latest"
     },
     "scripts": {
         "webpack": "webpack --config webpack.config.js",
