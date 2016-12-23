@@ -16,7 +16,6 @@ module.exports = {
         { test: /\.jade$/, loader: "jade" },
         // => "jade" loader is used for ".jade" files
         { test: /\.css$/, loader: "style!css" },
-        { test: /\.css$/, loader: "style-loader!css-loader" },
         // => "style" and "css" loader is used for ".css" files
         // Alternative syntax:
         { test: /\.css$/, loaders: ["style", "css"] }
