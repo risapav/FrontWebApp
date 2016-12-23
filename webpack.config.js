@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+const webpack = require('webpack');
+//var webpackUglifyJsPlugin = require('webpack-uglify-js-plugin');
 
 module.exports = {
     entry: './src/app.js',
@@ -18,7 +20,23 @@ module.exports = {
         // Alternative syntax:
         { test: /\.css$/, loaders: ["style", "css"] }
     ], 
-    plugins: [ 
+    plugins: [
+/*        
+        new webpackUglifyJsPlugin({
+            cacheFolder: path.resolve(__dirname, 'public/cached_uglify/'),
+            debug: true,
+            minimize: true,
+            sourceMap: false,
+            output: {
+                comments: false
+            },
+            compressor: {
+                warnings: false
+            }
+        })
+*/        
+        
+        
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
@@ -26,7 +44,8 @@ module.exports = {
             output: {
                 comments: false
             }
-      })
+        })
+        
     ]
 };
 
