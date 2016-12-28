@@ -48,10 +48,12 @@ module.exports = {
     plugins: [
         new ExtractTextPlugin('app.css'),
 //        new FaviconsWebpackPlugin({logo:'./src/img/logo.png', inject: false}),
+/*
         new webpack.optimize.UglifyJsPlugin({
             compress: { warnings: false },
             output: { comments: false }
         }),
+*/      
 /*        
         new CompressionPlugin({
             asset: "[path].gz[query]",
@@ -60,7 +62,8 @@ module.exports = {
             threshold: 10240,
             minRatio: 0.8
         }),
-*/        
+*/
+        
         new HtmlWebpackPlugin({
             minify: {
                 collapseWhitespace: true,
@@ -70,7 +73,7 @@ module.exports = {
             },
             template: './src/index.html'
         })
-      
+         
     ]
 };
 
