@@ -1,34 +1,44 @@
 {
-    "author": "Pavol Risa",
-    "homepage": "risapav@gmail.com",
-    "name": "TotalJsWebApplication",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/risapav/TotalJsWebApplication"
-    },
-    "description": "App BackEnd-FrontEnd for total.js using AMD and marionette",
-    "version": "1.0.0",
-    "keywords": ["util", "functional", "server", "client", "browser"],   
-    "contributors": [],
-    "dependencies": {
-        "mysql": "latest",
-        "total.js": "latest"
-    },
-    "engines": {
-        "node": "latest",
-        "webpack": "latest",
-        "webpack-uglify-js-plugin": "latest",
-        "css-loader": "latest",
-        "style-loader": "latest"
-    },
-    "scripts": {
-        "webpack": "webpack --config webpack.config.js",
-        "webpack1": "webpack --config webpack.config.js --module-bind 'css=style!css'",
-        "start": "node server.js"
-    },
-    "devDependencies": {
-        "webpack": "latest",
-        "bower": "latest"
-    },
-    "license": "MIT"
+  "author": "Pavol Risa",
+  "homepage": "risapav@gmail.com",
+  "name": "TotalJsWebApplication",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/risapav/TotalJsWebApplication"
+  },
+  "description": "App BackEnd-FrontEnd for total.js using AMD and marionette",
+  "version": "1.0.0",
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "contributors": [],
+  "dependencies": {
+    "backbone": "^1.3.3",
+    "backbone.marionette": "^3.1.0",
+    "jquery": "^3.1.1",
+    "mysql": "2.12.0",
+    "total.js": "2.3.0",
+    "underscore": "^1.8.3"
+  },
+  "scripts": {
+    "build": "webpack --progress",
+    "start": "webpack --config webpack.config.js",
+    "webpack": "webpack --config --watch webpack.config.js"
+  },
+  "devDependencies": {
+    "compression-webpack-plugin": "^0.3.2",
+    "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "1.0.1",
+    "favicons-webpack-plugin": "0.0.7",
+    "html-webpack-plugin": "2.24.1",
+    "less-loader": "^2.2.3",
+    "style-loader": "^0.13.1",
+    "webpack": "1.14.0",
+    "webpack-uglify-js-plugin": "1.1.9"
+  },
+  "license": "MIT"
 }

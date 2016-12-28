@@ -3,5 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-require("./css/style.css");
+//require("./css/style.css");
+require("./less/style.less");
 document.write("It works.");
