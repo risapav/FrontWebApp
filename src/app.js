@@ -6,7 +6,8 @@
 
 const Bb = require('backbone');
 const Mn = require('backbone.marionette');
-const App = require('./src/app/root/app.js');
+import App from './app/root/app.js';
+//const App = require('script-loader!./app/root/app.js');
 
 // Create our Application
 const app = new App();

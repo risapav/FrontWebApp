@@ -27,8 +27,9 @@
   },
   "scripts": {
     "build": "webpack --progress",
-    "start": "webpack --config webpack.config.js",
-    "webpack": "webpack --config --watch webpack.config.js"
+    "production": "webpack -p",
+    "start": "webpack",
+    "webpack": "webpack --watch"
   },
   "devDependencies": {
     "compression-webpack-plugin": "^0.3.2",

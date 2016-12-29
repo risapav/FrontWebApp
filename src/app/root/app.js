@@ -12,7 +12,7 @@ define('APP',['jquery', 'underscore', 'backbone.marionette'], function( $, _, Mn
     });
 
     // Export a function
-    return function Mn.Application.extend({
+    return Mn.Application.extend({
         region: '#main-region',
         
         initialize: function(options) {
