@@ -7,7 +7,6 @@
 const Bb = require('backbone');
 const Mn = require('backbone.marionette');
 import App from './app/root/app.js';
-//const App = require('script-loader!./app/root/app.js');
 
 // Create our Application
 const app = new App();
@@ -25,11 +24,6 @@ app.start({
   }
 });
 
-
-
-require("./css/style1.css");
-document.write("It works.");
-console.log("It works.");
 
 
 

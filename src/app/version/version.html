@@ -1,0 +1,9 @@
+<h3>Aktuálna verzia programu a použité knižnice</h3>
+<table class="table table-hover table-bordered table-condensed">
+<thead><tr><th>Program</th><th>Verzia</th></tr></thead>
+<tbody>
+{{ _.each(lib, function(el,index){ if(el.ver){ }}
+<tr><td>{{- el.name }}</td><td>{{- el.ver }}</td></tr>
+{{ } }); }}
+</tbody>
+</table>

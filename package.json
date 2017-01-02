@@ -17,30 +17,31 @@
   ],
   "contributors": [],
   "dependencies": {
-    "backbone": "^1.3.3",
-    "backbone.marionette": "^3.1.0",
-    "bootstrap": "^3.3.7",
-    "jquery": "^3.1.1",
+    "backbone": ">=1.3.3",
+    "backbone.marionette": ">=3.1.0",
+    "bootstrap": ">=3.3.7",
+    "jquery": ">=3.1.1",
     "mysql": "2.12.0",
-    "total.js": "2.3.0",
-    "underscore": "^1.8.3"
+    "total.js": ">=2.3.0",
+    "underscore": ">=1.8.3"
   },
   "scripts": {
     "build": "webpack --progress",
-    "production": "webpack -p",
+    "build-production-single": "set NODE_ENV=production-single&&webpack -p --progress --colors",
+    "build-production-multi": "set NODE_ENV=production-multi&&webpack -p --progress --colors",
     "start": "webpack",
     "webpack": "webpack --watch"
   },
   "devDependencies": {
     "compression-webpack-plugin": "^0.3.2",
     "css-loader": "^0.26.1",
-    "extract-text-webpack-plugin": "1.0.1",
+    "extract-text-webpack-plugin": "git://github.com/risapav/extract-text-webpack-plugin",
     "favicons-webpack-plugin": "0.0.7",
     "html-webpack-plugin": "2.24.1",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "style-loader": "^0.13.1",
-    "webpack": "1.14.0",
+    "webpack": "^2.2.0-rc.3",
     "webpack-uglify-js-plugin": "1.1.9"
   },
   "license": "MIT"

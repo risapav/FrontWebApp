@@ -6,6 +6,8 @@
 
 
 define('APP',['jquery', 'underscore', 'backbone.marionette'], function( $, _, Mn) {
+    
+    require("./styles.less");
     // Do something with $ and myModule.
     const MainView = Mn.View.extend({
         template: _.template('<h1><%= title %></h1>')
