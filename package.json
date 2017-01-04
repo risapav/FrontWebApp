@@ -1,12 +1,12 @@
 {
   "author": "Pavol Risa",
   "homepage": "risapav@gmail.com",
-  "name": "TotalJsWebApplication",
+  "name": "FrontWebApp",
   "repository": {
     "type": "git",
-    "url": "https://github.com/risapav/TotalJsWebApplication"
+    "url": "https://github.com/risapav/FrontWebApp"
   },
-  "description": "App BackEnd-FrontEnd for total.js using AMD and marionette",
+  "description": "Javascript FrontEnd Application for browser using AMD and MarionetteJs",
   "version": "1.0.0",
   "keywords": [
     "util",
