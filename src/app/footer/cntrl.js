@@ -1,50 +1,32 @@
-/**
- * @copyright (c) 2015
- * @author Pavol Riša
- * Module representing a template.
- * @module
- * @param {type} APP
- * @param {type} Views
- * @return {object} description
+/* 
+ * Copyright (c) 2010-2016 Pavol Risa
+ * All rights reserved
+ * 
+ * A marionettejs javascript demo application.
+ * Works at frontend browser side
+ * Compiled under Webpack 2 tools
  */
-define([
-    'app',
-    'apps/footer/view',
-    'obje/timer'
-], function (APP, Views) {
-    'use strict';
-//----------------------------------------------------------------------------//
-/**
- * Popis modulu Footer
- * @name Footer
- * @namespace Footer
- * @memberOf App
- * @see App#myInstanceMethod
- */
-APP.module('Footer', /** @lends App#Footer */ APP.Submodule, {isPermanent: true});
-//----------------------------------------------------------------------------//
-/**
- * Popis modulu Footer.Controllers
- * @class App.Footer#Controllers
- * @namespace Footer.Controllers
- * @memberOf App
- */
-APP.module('Footer.Controllers', /** @class */
+
+define('footer.cntrl',['App/app.js','Footer/view.js'], 
+    function (APP, Views) {
+                
+        var Controller = {
+            showEmail: function(email) {
+            // Look up the email and display it in our main layout
+            }
+        };
+    
+    return { 'APP.Footer.Cntrl': Controller };
+});
+
+/*
+APP.module('Footer', APP.Submodule, {isPermanent: true});
+
+APP.module('Footer.Controllers', 
     function (Mod, App, Backbone, Marionette, $, _) {
-        /** @lends App.Footer#Controllers */
-//----------------------------------------------------------------------------//
-    /**
-     * Class description Show
-     * @extends Marionette.Controller
-     * @memberOf App.Footer.Controllers
-     * @private
-     */
+
     var Show = Marionette.Controller.extend({
-        /**
-         * napis spravu do footeru
-         * @param {object} options
-         * @returns {undefined}
-         */
+
         Message: function (options) {
             var view = new Views.Message();
             App.footerRegion.show(view);
@@ -57,21 +39,13 @@ APP.module('Footer.Controllers', /** @class */
             //spusti casovac na prepnutie
             Mod.Timeout.start();
         },
-        /**
-         * napis copyright do footeru
-         * @param {object} options
-         * @returns {undefined}
-         */
+
         Footer: function (options) {
             var view = new Views.Copyright();
             App.footerRegion.show(view);
         }
     });
-//----------------------------------------------------------------------------//
-    /**
-     * @event App.Footer.Controllers#before:start
-     * @returns {undefined}
-     */
+
     Mod.on('before:start', function(){
         this.Show = new Show();
         //nastav generovanie udalosti po vyprsani timeoutu
@@ -82,30 +56,19 @@ APP.module('Footer.Controllers', /** @class */
         });
 //console.log('footer before:start<<<<<<<<<<<<<<<', Mod, App);
     },this);
-//----------------------------------------------------------------------------//
-    /**
-     * @event App.Footer.Controllers#start
-     * @returns {undefined}
-     */
+
     Mod.on('start', function(){
         this.listenTo(this.Timeout, 'Expired', function(options){
             App.commands.execute('footer:show');
 //            console.log('footer/timer/expired', options);
         }, this);
     });
-//----------------------------------------------------------------------------//
-    /**
-     * @event App.Footer.Controllers#stop
-     * @returns {undefined}
-     */
+
     Mod.on('stop', function(){
         this.Timeout.destroy();
         this.Show.destroy();
     }, this);
-//----------------------------------------------------------------------------//
-});//end of module
-//----------------------------------------------------------------------------//
-return  APP.module('Footer.Controllers');
-//----------------------------------------------------------------------------//
-});//end of define
-//----------------------------------------------------------------------------//
+
+});
+
+*/

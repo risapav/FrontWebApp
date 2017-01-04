@@ -42,7 +42,10 @@
     "less-loader": "^2.2.3",
     "style-loader": "^0.13.1",
     "webpack": "^2.2.0-rc.3",
-    "webpack-uglify-js-plugin": "1.1.9"
+    "webpack-uglify-js-plugin": "1.1.9",
+    "ejs-html-loader": "1.0.3",
+    "html-loader": "latest",
+    "html-tpl-loader": "latest"
   },
   "license": "MIT"
 }

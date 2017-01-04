@@ -1,83 +1,51 @@
-/**
- * Module representing a template.
- * @module
- * @param {type} APP
- * @param {type} Templates
- * @return {object} description
+/* 
+ * Copyright (c) 2010-2016 Pavol Risa
+ * All rights reserved
+ * 
+ * A marionettejs javascript demo application.
+ * Works at frontend browser side
+ * Compiled under Webpack 2 tools
  */
-define([
-    'app',
-    'apps/footer/temp'
-],
-    function (APP, Templates) {
-        'use strict';
-//----------------------------------------------------------------------------//
-/**
- * Popis modulu Footer.Views
- * @class App.Footer#Views
- * @namespace Footer.Views
- * @memberOf App
- */
-APP.module('Footer.Views',
-    function (Mod, App, Backbone, Marionette, $, _) {
-//----------------------------------------------------------------------------//
-/**
- * Class description view
- * @class App.Footer.Views#Message
- * @extends Marionette.ItemView
- * @memberOf App.Footer.Views
- */
+
+define('footer.view', ['App/app.js', 'backbone', 'backbone.marionette', 'Footer/temp.js'],
+    function (APP, Bb, Mn, Templates) {
+        
 Mod.Message = Marionette.ItemView.extend({
-    /**
-     * @type {string}
-     * @default
-     */
+
     className: 'navbar navbar-static-bottom text-center alert',
-    /**
-     * @type {string}
-     * @default
-     */
+
     id: 'messageRegion',
-    /**
-     * @type {string}
-     * @default
-     */
+
     tagName: 'div',
-    /**
-     * @type {string}
-     * @default
-     */
+
     template: false
 });
-//----------------------------------------------------------------------------//
-/**
- * Class description view
- * @name Footer.Views#Copyright
- * @class App.Footer.Views#Copyright
- * @extends Marionette.ItemView
- * @memberOf App.Footer.Views
- */
+
 Mod.Copyright = Marionette.ItemView.extend({
-    /**
-     * @type {string}
-     * @default
-     */
+
     className: 'navbar navbar-static-bottom text-center alert',
-    /**
-     * @type {string}
-     * @default
-     */
+
     tagName: 'div',
-    /**
-     * @type {string}
-     * @default
-     */
+
     template: _.template(Templates.copy)
 });
-//----------------------------------------------------------------------------//
-});//end of module
-//----------------------------------------------------------------------------//
-return APP.module('Footer.Views');
-//----------------------------------------------------------------------------//
-});//end of define
-//----------------------------------------------------------------------------//
+        
+        var View = Mn.View.extend({
+            template: '#tpl-view-with-regions',
+
+            regions: {
+              firstRegion: '#first-region'
+            },
+
+            onRender: function() {
+              this.showChildView('firstRegion', new SubView());
+            },
+
+            onSomeEvent: function() {
+              var first = this.getChildView('firstRegion');
+              first.doSomething();
+            }
+        });
+          
+    return { 'APP.Footer.View': new View };
+});

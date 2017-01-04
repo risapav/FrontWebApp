@@ -4,7 +4,7 @@
  * @param {type} APP
  * @return {object} description
  */
-define(['app'], function (APP) {
+define('header',['app'], function (APP) {
     'use strict';
 //----------------------------------------------------------------------------//
 /**

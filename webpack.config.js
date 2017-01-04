@@ -3,6 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+var path = require("path");
+
 const webpack = require('webpack'); //to access built-in plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -25,6 +27,7 @@ var config = {
 //        library: 'myLib',
 //        libraryTarget: "amd"
     },
+
     module: {
         
         rules: [
@@ -39,30 +42,27 @@ var config = {
                     fallbackLoader: 'style-loader',
                     loader: 'css-loader!less-loader'
                 })
-            }
-            
-             
-
-    /*
-            {
-                test:    /\.css$/, 
-    //                include: `${__dirname}/app`,
-                use: ExtractTextPlugin.extract({
-                  loader:         'css-loader', 
-                  fallbackLoader: 'style-loader'
-                })
-              }          
-    */           
+            },
+{ test: /\.ejs$/, loader: "ejs-tpl?variable=data" },
+{ test: /\.html$/, loader: 'html-loader', query: { minimize: false } }
+                   
         ]
     }, 
     plugins: [
-        new ExtractTextPlugin({ filename: '[name].css', disable: false, allChunks: true })
+        new ExtractTextPlugin({ filename: '[name].css', disable: false, allChunks: true }),
+        new webpack.ProvidePlugin({ _: "underscore" })
     ],
     resolve: {
+        alias: {
+            App: path.resolve(__dirname, 'src/app/root/'),
+            Footer: path.resolve(__dirname, 'src/app/footer/'),
+            About: path.resolve(__dirname, 'src/app/about/'),
+            Header: path.resolve(__dirname, 'src/app/header/')
+        },
         modules: [
             'node_modules'
         ],
-        extensions: ['.js','.json','.jsx','.css','.less']
+        extensions: ['.js','.json','.jsx','.css','.less', '.ejs']
     },
     target: 'web'
     

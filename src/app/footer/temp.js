@@ -1,14 +1,14 @@
-/**
- * @copyright (c) 2015
- * @author Pavol Riša
- * Module representing a template.
- * @module
- * @param {type} CopyTpl
- * @returns {object}
+/* 
+ * Copyright (c) 2010-2016 Pavol Risa
+ * All rights reserved
+ * 
+ * A marionettejs javascript demo application.
+ * Works at frontend browser side
+ * Compiled under Webpack 2 tools
  */
-define(['text!apps/footer/copy.html'],
+
+define('footer.tmp',['Footer/copy.html'],
     function (CopyTpl) {
-        'use strict';
 
         return {
             'copy': CopyTpl
