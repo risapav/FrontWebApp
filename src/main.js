@@ -11,10 +11,4 @@ const App = require('App/app.js');
 const app = new App({title: 'Marionette spustene'});
 
 //start app
-app.start({
-    data: {
-        title: 'Marionette says hello!'
-    }        
-});
-
-console.log('app=>',app);
+app.start();
