@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <!--
 Copyright (c) 2010-2016 Pavol Risa
 All rights reserved
@@ -7,13 +6,13 @@ A marionettejs javascript demo application.
 Works at frontend browser side
 Compiled under Webpack 2 tools
 -->
-<div id="header-region" class="navbar navbar-default navbar-fixed-top" role="navigation">
+<header id="header" class="bs-docs-nav navbar navbar-fixed-top">
     Loading... header
-</div>
-<div id="main-region" class="container">
+</header>
+<div id="main" class="container">
     Loading... main
 </div>
-<div id="dialog-region"></div>
-<div id="footer-region" class="footer">
+<div id="dialog"></div>
+<footer id="footer" class="footer">
     Loading... footer
-</div>
+</footer>

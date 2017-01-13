@@ -1,38 +1,28 @@
-define([
-    'app',
-    'apps/about/view'
-], function(APP, Views){
-    'use strict';
-//----------------------------------------------------------------------------//
-APP.module('About', APP.Submodule);
-//----------------------------------------------------------------------------//
-APP.module('About.Controllers', /** @class */
-    function (Mod, App, Backbone, Marionette, $, _) {
-//----------------------------------------------------------------------------//
-    var Show = Marionette.Controller.extend({
-        Message: function(options){
-            //vykresli layout
-            var layoutView = new Views.Layout(options);
-            App.mainRegion.show(layoutView);
-            //vykresli about spravu
-            var view = new Views.Message(options);
-            App.panelRegion.show(view);           
-        }
-    });
-//----------------------------------------------------------------------------//
-    Mod.on('before:start', function(){
-        this.Show = new Show();
-    });
-//----------------------------------------------------------------------------//
-    Mod.on('stop', function(){
-        this.Show.destroy();
-    });
-//----------------------------------------------------------------------------//
-});//end of module
-//----------------------------------------------------------------------------//
-return  APP.module('About.Controllers');
-//----------------------------------------------------------------------------//
-});//end of define
-//----------------------------------------------------------------------------//
+/* 
+ * Copyright (c) 2010-2016 Pavol Risa
+ * All rights reserved
+ * 
+ * A marionettejs javascript demo application.
+ * Works at frontend browser side
+ * Compiled under Webpack 2 tools
+ */
 
-
+define('about.ctrl',['backbone.marionette', 'backbone.radio'], 
+    function (Mn, Radio) {
+        //       
+        const View = require('./view.js');
+        //       
+        const appChannel = Radio.channel('app');
+        const App = appChannel.request('app:this');
+        //
+        return Mn.Object.extend({
+            channelName: 'about',
+            radioEvents: {
+                'show:about': 'showAbout'
+            },
+            showAbout: function(){
+                const view = new View();
+                App.view.showChildView('main', view);
+            }
+        });
+});

@@ -1,44 +1,40 @@
-/**
- * Module representing a template.
- * @module
- * @param {type} APP
- * @param {type} Views
- * @return {object} description
+/* 
+ * Copyright (c) 2010-2016 Pavol Risa
+ * All rights reserved
+ * 
+ * A marionettejs javascript demo application.
+ * Works at frontend browser side
+ * Compiled under Webpack 2 tools
  */
-define([
-    'app',
-    'apps/header/view',
-    'obje/timer',
-    'enti/user'
-], function (APP, Views) {
-    'use strict';
-//----------------------------------------------------------------------------//
-/**
- * Popis modulu Header
- * @name Header
- * @namespace Header
- * @memberOf App
- * @see App#myInstanceMethod
- */
-APP.module('Header', /** @lends App#Header */ APP.Submodule, {isPermanent: true});
-//----------------------------------------------------------------------------//
-/**
- * Popis modulu Header.Controllers
- * @module Header.Controllers
- * @namespace Controllers
- * @memberOf App.Header
- */
-APP.module('Header.Controllers', /** @class */
-    function (Mod, App, Backbone, Marionette, $, _) {
-        /** @lends App#Header.Controllers */
-//----------------------------------------------------------------------------//
-    /**
-     * Class description Controller
-     * @name App.Header.Controllers.Controller
-     * @extends Marionette.Controller
-     * @memberOf App.Header.Controllers
-     * @private
-     */
+
+define('header.ctrl',['backbone.marionette', 'backbone.radio'], 
+    function (Mn, Radio) {
+        //       
+        const View = require('./view.js');
+        //       
+        const appChannel = Radio.channel('app');
+        const App = appChannel.request('app:this');
+        //
+        return Mn.Object.extend({
+            channelName: 'header',
+            radioEvents: {
+                'show:m_0': 'showMenu_0',
+                'show:m_1': 'showMenu_1',
+                'show:m_2': 'showMenu_2'
+            },
+            showMenu_0: function(){
+                App.view.showChildView('header', new View.Menu0());
+            },
+            showMenu_1: function(){
+                App.view.showChildView('header', new View.Menu1());                
+            },
+            showMenu_2: function(){
+                App.view.showChildView('header', new View.Menu2());                
+            }
+        });
+});
+
+/*
     var Com = Marionette.Controller.extend({
         Ping: function (options) {
             var ajaxOptions = _.extend({
@@ -71,28 +67,13 @@ APP.module('Header.Controllers', /** @class */
             Mod.pingTimer.start();
         }
     });
-//----------------------------------------------------------------------------//
-    /**
-     * Class description Controller
-     * @name App.Header.Controllers.Show
-     * @extends Marionette.Controller
-     * @memberOf App.Header.Controllers
-     * @private
-     */
+
     var Show = Marionette.Controller.extend({
-        /**
-         * vykresli layout
-         * @param {type} options
-         * @returns {undefined}
-         */
+
         Layout: function (options) {
 
         },
-        /**
-         * vykresli cas v header menu
-         * @param {type} options
-         * @returns {undefined}
-         */
+
         Time: function (options) {
             //vykresli layout
             var layout = new Views.Layout(
@@ -103,11 +84,7 @@ APP.module('Header.Controllers', /** @class */
             var view = new Views.Time(options);
             App.menuRegion.show(view);
         },
-        /**
-         * vykresli header menu
-         * @param {type} options
-         * @returns {undefined}
-         */
+
         Menu: function (options) {
             //vykresli layout
             var layout = new Views.Layout(
@@ -123,29 +100,19 @@ APP.module('Header.Controllers', /** @class */
             Mod.menuTimer.start();
         }
     });
-//----------------------------------------------------------------------------//
-    /**
-     * @event App.Header.Controllers#before:start
-     * @returns void
-     */
+
     this.on('before:start', function(){
         //priprav controller zobrazovania
         this.Show = new Show();
         //priprav controller pingovania servera
         this.Com = new Com();
-        /**
-         * nastav generovanie udalosti po vyprsani timeoutu
-         * @public
-         */
+
         this.menuTimer = App.reqres.request('object:timer:new', {
             name: 'menu/time',
             type: 'timeout',
             delay: App.getOption('menuTimerDelay')
         });
-        /**
-         * nastav generovanie udalosti po vyprsani timeoutu
-         * @public
-         */
+
         Mod.pingTimer = App.reqres.request('object:timer:new', {
             name: 'ping/timer',
             type: 'interval',
@@ -156,34 +123,18 @@ APP.module('Header.Controllers', /** @class */
             {pingTimer: Mod.pingTimer, menuTimer: Mod.menuTimer}
         );
     }, this);
-//----------------------------------------------------------------------------//
-    /**
-     * @event App.Header.Controllers#start
-     * @returns {undefined}
-     */
+
     Mod.on('start', function(){
-        /**
-         * Osetrenie udalosti Expired pre aktualizovanie casu v menu
-         * @event Expired
-         * @param {Object} options
-         */
+
         this.listenTo(Mod.menuTimer, 'Expired', function (options) {
             App.commands.execute('header:time', options);
         });
-        /**
-         * Osetrenie udalosti Expired pre generovanie pingnutia servera
-         * @event
-         * @param {Object} options
-         */
+
         this.listenTo(Mod.pingTimer, 'Expired', function (options) {
             App.commands.execute('header:ping');
         });
     });
-//----------------------------------------------------------------------------//
-    /**
-     * @event App.Header.Controllers#stop
-     * @returns void
-     */
+
     this.on('stop', function () {
         this.pingTimer.destroy();
         this.menuTimer.destroy();
@@ -193,8 +144,4 @@ APP.module('Header.Controllers', /** @class */
     }, this);
 //----------------------------------------------------------------------------//
 });//end of module
-//----------------------------------------------------------------------------//
-return  APP.module('Header.Controllers');
-//----------------------------------------------------------------------------//
-});//end of define
-//----------------------------------------------------------------------------//
+*/

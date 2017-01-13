@@ -43,17 +43,29 @@ var config = {
                     loader: 'css-loader!less-loader'
                 })
             },
-{ test: /\.ejs$/, loader: "ejs-tpl?variable=data" },
-{ test: /\.html$/, loader: 'html-loader', query: { minimize: false } }
+
+			{ 	test: /\.tpl$/, loader: "ejs-loader", query: { 
+                    variable: 'data', 
+                    interpolate : '\\{\\{(.+?)\\}\\}', 
+                    evaluate : '\\[\\[(.+?)\\]\\]' 
+				} 
+			},
+
+			{ test: /\.html$/, loader: 'html-loader', query: { minimize: false } }
                    
         ]
     }, 
     plugins: [
         new ExtractTextPlugin({ filename: '[name].css', disable: false, allChunks: true }),
-        new webpack.ProvidePlugin({ _: "underscore" })
+        new webpack.ProvidePlugin({ 
+			$: 'jquery', 
+			jQuery: 'jquery',
+			_: "underscore" 
+		})
     ],
     resolve: {
         alias: {
+			Lib: path.resolve(__dirname, 'src/lib/'),
             App: path.resolve(__dirname, 'src/app/root/'),
             Footer: path.resolve(__dirname, 'src/app/footer/'),
             About: path.resolve(__dirname, 'src/app/about/'),
@@ -62,7 +74,7 @@ var config = {
         modules: [
             'node_modules'
         ],
-        extensions: ['.js','.json','.jsx','.css','.less', '.ejs']
+        extensions: ['.js','.json','.jsx','.css','.less', '.ejs', '.tpl']
     },
     target: 'web'
     

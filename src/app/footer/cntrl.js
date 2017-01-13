@@ -7,16 +7,43 @@
  * Compiled under Webpack 2 tools
  */
 
-define('footer.cntrl',['App/app.js','Footer/view.js'], 
-    function (APP, Views) {
-                
-        var Controller = {
-            showEmail: function(email) {
-            // Look up the email and display it in our main layout
+define('footer.ctrl',['backbone.marionette', 'backbone.radio'], 
+    function (Mn, Radio) {
+        //       
+        const View = require('./view.js');
+        //       
+        const appChannel = Radio.channel('app');
+        const App = appChannel.request('app:this');
+        //
+        return Mn.Object.extend({
+            channelName: 'footer',
+            radioEvents: {
+                'show:msg': 'showMessage',
+                'show:cpy': 'showFooter'
+            },
+
+            showMessage: function (options) {
+                const view = new View({template: false});
+                App.view.showChildView('footer', view);
+                //
+                if (options.type) {
+                    view.$el.addClass(options.type);
+                }
+                if (options.text) {
+                    view.$el.text(options.text);
+                }
+                //spusti casovac na prepnutie
+//                Mod.Timeout.start();
+console.log('showMessage>>', view, this, App);
+            },
+
+            showFooter: function () {
+                const view = new View();
+                App.view.showChildView('footer', view);
+console.log('showFooter>>', view, this, App);                
             }
-        };
+        });
     
-    return { 'APP.Footer.Cntrl': Controller };
 });
 
 /*

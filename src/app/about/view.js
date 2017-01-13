@@ -1,68 +1,27 @@
-/**
- * Module representing a template.
- * @module
- * @param {type} APP
- * @param {type} Templates
- * @return {object} description
+/* 
+ * Copyright (c) 2010-2016 Pavol Risa
+ * All rights reserved
+ * 
+ * A marionettejs javascript demo application.
+ * Works at frontend browser side
+ * Compiled under Webpack 2 tools
  */
-define([
-    'app',
-    'apps/about/temp'
-],
-    function (APP, Templates) {
-        'use strict';
-//----------------------------------------------------------------------------//
-/**
- * Popis modulu About.Views
- * @name module('About.Views')
- * @namespace Views
- * @memberOf App.About
- */
-APP.module('About.Views', /** @class */
-    function (Mod, App, Backbone, Marionette, $, _) { /** @lends App#About#Views */
-//----------------------------------------------------------------------------//
-/**
- * Class description view
- * @class
- * @name Message
- * @extends Marionette.ItemView
- * @memberOf App.About.Views
- */
-Mod.Message = Marionette.ItemView.extend(/** @lends App#About#Views.Message */{
-    template: _.template(Templates.about),
-    templateHelpers: function () {
-        return {
-            prgname: App.getOption('prgname'),
-            version: App.getOption('version')
-        };
-    }
-});
-//----------------------------------------------------------------------------//
-/**
- * zobrazenie zakladneho rozlozenia layoutu
- * @class
- * @name Message
- * @extends Marionette.LayoutView
- * @memberOf App.About.Views
- */
-Mod.Layout = Marionette.LayoutView.extend(/** @lends App#About#Views.Layout */{
-    /** @lends About.Views.LayoutView.prototype */
-    template: _.template(Templates.layout),
-    tagName: 'div',
-    className: 'row',
 
-    regions: {
-        sidebarRegion: '#sidebar-region',
-        panelRegion: '#panel-region'
-    },
-    initialize: function(){
-        App.addRegions(this.getRegions());
-    }
+define('about.view', ['backbone.marionette','backbone.radio'],
+    function ( Mn, Radio ) {
+        //    
+//        require("./header.less");
+        //       
+        const appChannel = Radio.channel('app');
+        const App = appChannel.request('app:this');
+        //
+        const Template = require('About/about.tpl');
+        //
+        return Mn.View.extend({
+            template: Template({
+                prgname: App.getOption('prgname'),
+                version: App.getOption('version')
+            })
+                        
+        });
 });
-//----------------------------------------------------------------------------//
-});//end of module
-//----------------------------------------------------------------------------//
-return APP.module('About.Views');
-//----------------------------------------------------------------------------//
-});//end of define
-//----------------------------------------------------------------------------//

@@ -8,16 +8,16 @@
  */
 
 define('root.view', ['underscore', 'backbone.marionette'],
-    function (_, Mn) {
-        
-        const Template = _.template(require('App/layout.html'));
-        
+    function (_, Mn) { 
+        //
+        const Template = require('App/layout.tpl');
+        //
         return Mn.View.extend({
             template: Template,
             regions: {
-                header: '#header-region',
-                footer: '#footer-region',
-                main: '#main-region'
+                header: '#header',
+                footer: '#footer',
+                main: '#main'
             }
         });       
 });
