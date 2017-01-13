@@ -43,11 +43,23 @@ var config = {
                     loader: 'css-loader!less-loader'
                 })
             },
-
-			{ 	test: /\.tpl$/, loader: "ejs-loader", query: { 
+            {
+                test: /\.tpl$/,
+                loader: "underscore-template-loader",
+                query: {
+                    parseMacros: true,
+                    //interpolate: '\\{\\[(.+?)\\]\\}', // {[ value ]}
+                    //evaluate: '\\{%([\\s\\S]+?)%\\}', // {% value %}
+                    //escape: '\\{\\{(.+?)\\}\\}'	// {{ value }}
+					interpolate: '\\{\\{=(.+?)\\}\\}',	// {{= value }}
+					escape: '\\{\\{-(.+?)\\}\\}',	// {{- value }} 
+					evaluate: '\\{\\{(.+?)\\}\\}' 	// {{ value }}				
+                }
+            },
+			{ 	test: /\.ejs$/, loader: "ejs-loader", query: { 
                     variable: 'data', 
                     interpolate : '\\{\\{(.+?)\\}\\}', 
-                    evaluate : '\\[\\[(.+?)\\]\\]' 
+                    evaluate : '\\[\\[(.+?)\\]\\]' 										
 				} 
 			},
 

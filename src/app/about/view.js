@@ -15,13 +15,15 @@ define('about.view', ['backbone.marionette','backbone.radio'],
         const appChannel = Radio.channel('app');
         const App = appChannel.request('app:this');
         //
-        const Template = require('About/about.tpl');
+        const Template = require('About/about.tpl');   
         //
         return Mn.View.extend({
-            template: Template({
-                prgname: App.getOption('prgname'),
-                version: App.getOption('version')
-            })
+            template: _.template(
+                Template({
+                    prgname: App.getOption('prgname'),
+                    version: App.getOption('version')
+                })
+            )
                         
         });
 });
