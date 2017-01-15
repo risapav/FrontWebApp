@@ -9,8 +9,6 @@
 
 define('about.view', ['backbone.marionette','backbone.radio'],
     function ( Mn, Radio ) {
-        //    
-//        require("./header.less");
         //       
         const appChannel = Radio.channel('app');
         const App = appChannel.request('app:this');
