@@ -9,8 +9,6 @@
 
 define('footer.view', [ 'backbone.marionette' ],
     function ( Mn ) {
-        //    
-        require("./footer.less");
         //
         const Template = require('Footer/copy.tpl');
         //

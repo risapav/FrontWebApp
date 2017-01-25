@@ -9,8 +9,6 @@
 
 define('header.view', ['backbone.marionette'],
     function ( Mn ) {
-        //    
-        require("./header.less");
         //
         const TemplateMenu0 = require('Header/menu_0.tpl');
         const TemplateMenu1 = require('Header/menu_1.tpl');
@@ -18,7 +16,8 @@ define('header.view', ['backbone.marionette'],
         //
         return { 
             Menu0: Mn.View.extend({
-                template: TemplateMenu0
+                template: TemplateMenu0,
+                className: 'container'
                 
             }),
             Menu1: Mn.View.extend({

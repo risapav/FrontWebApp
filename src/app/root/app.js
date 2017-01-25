@@ -10,7 +10,7 @@
 define('root.app',['backbone', 'backbone.marionette', 'backbone.radio'], 
 function( Bb, Mn, Radio) {
     //    
-    require("./styles.less");  
+//    require("./styles.less");  
     // Export a function
     return Mn.Application.extend({
         channelName: 'app',
@@ -38,7 +38,7 @@ function( Bb, Mn, Radio) {
             this.SubApp = new AboutApp();
             //
             const headerChannel = Radio.channel('header');           
-   //         headerChannel.trigger('show:m_0');            
+            headerChannel.trigger('show:m_0');            
             const footerChannel = Radio.channel('footer');           
             footerChannel.trigger('show:cpy');
             const aboutChannel = Radio.channel('about');           

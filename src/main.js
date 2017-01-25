@@ -8,6 +8,8 @@
  */
         
 require(['App/app.js'], function(App){
+    //    
+    //    
     const app = new App({
         title: 'Marionette spustene', 
         version: '0.0.1', 

@@ -43,6 +43,13 @@ var config = {
                     loader: 'css-loader!less-loader'
                 })
             },
+{ test: /.jpe?g$|.gif$|.png$|.svg$|.woff$|.woff2$|.ttf$|.eot$/, loader: "url" },
+
+//			{ test: /.(png|woff(2)?|eot|ttf|svg)(?[a-z0-9=.]+)?$/, loader: 'url-loader?limit=100000' },
+//			{
+ //       test: /\.(png|woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+ //       loader: 'url'
+ //     },
             {
                 test: /\.tpl$/,
                 loader: "underscore-template-loader",
@@ -77,6 +84,7 @@ var config = {
     ],
     resolve: {
         alias: {
+			Less: path.resolve(__dirname, 'src/less/'),
 			Lib: path.resolve(__dirname, 'src/lib/'),
             App: path.resolve(__dirname, 'src/app/root/'),
             Footer: path.resolve(__dirname, 'src/app/footer/'),

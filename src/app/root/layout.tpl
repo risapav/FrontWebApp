@@ -6,9 +6,9 @@ A marionettejs javascript demo application.
 Works at frontend browser side
 Compiled under Webpack 2 tools
 -->
-<header id="header" class="bs-docs-nav navbar navbar-fixed-top">
+<nav id="header" class="bs-docs-nav navbar navbar-fixed-top">
     Loading... header
-</header>
+</nav>
 <div id="main" class="container">
     Loading... main
 </div>
