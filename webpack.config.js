@@ -21,8 +21,8 @@ var config = {
         main: './src/main.js'
     },
     output: {
-        path: './bin',
-        filename: '[name].js' //['vendor.js','app.js']
+        path: '../BackWebApp/app/public',
+        filename: 'js/[name].js' //['vendor.js','app.js']
 //        publicPath: './static/',
 //        library: 'myLib',
 //        libraryTarget: "amd"
@@ -84,8 +84,8 @@ var config = {
     ],
     resolve: {
         alias: {
-			Less: path.resolve(__dirname, 'src/less/'),
-			Lib: path.resolve(__dirname, 'src/lib/'),
+            Less: path.resolve(__dirname, 'src/less/'),
+            Lib: path.resolve(__dirname, 'src/lib/'),
             App: path.resolve(__dirname, 'src/app/root/'),
             Footer: path.resolve(__dirname, 'src/app/footer/'),
             About: path.resolve(__dirname, 'src/app/about/'),
