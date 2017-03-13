@@ -10,9 +10,9 @@
 define('about.app',['backbone.marionette', 'backbone.radio'], 
     function (Mn, Radio) {
         //
-        const Controller = require('./cntrl.js');
+        const Controller = require('ABOUT/cntrl.js');
         //
-        const aboutChannel = Radio.channel('about');
+        const Channel = Radio.channel('ChAbout');
         //           
         return Mn.AppRouter.extend({
             controller: new Controller,
@@ -20,7 +20,7 @@ define('about.app',['backbone.marionette', 'backbone.radio'],
                 'about': 'showAbout'
             },
             showAbout: function(){           
-                aboutChannel.trigger('show:about');
+                Channel.trigger('show:about');
             }
         });
 });  

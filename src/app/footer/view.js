@@ -8,12 +8,29 @@
  */
 
 define('footer.view', [ 'backbone.marionette' ],
-    function ( Mn ) {
-        //
-        const Template = require('Footer/copy.tpl');
-        //
-        return Mn.View.extend({
-           template: Template,
-           className: 'container'
-        });
+function ( Mn ) {
+    //
+    const Tmp1 = require('FOOTER/cpy.tpl');
+    const Tmp2 = require('FOOTER/msg.tpl');
+    //
+    return {
+        Cpy: Mn.View.extend({
+            template: Tmp1,
+            className: 'container'
+        }),
+        Msg: Mn.View.extend({
+            template: Tmp2,
+            templateContext: function() {
+                return {
+                    text: this.getOption('text')
+                };
+            },
+            className: 'container',
+            initialize: function(options){
+                if (options.type) {
+                    this.$el.addClass(options.type);
+                }
+            }
+        })
+    };
 });

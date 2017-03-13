@@ -10,7 +10,7 @@
 define('root.view', ['underscore', 'backbone.marionette'],
     function (_, Mn) { 
         //
-        const Template = require('App/layout.tpl');
+        const Template = require('ROOT/layout.tpl');
         //
         return Mn.View.extend({
             template: Template,

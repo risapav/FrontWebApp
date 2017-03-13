@@ -10,13 +10,13 @@
 define('header.ctrl',['backbone.marionette', 'backbone.radio'], 
     function (Mn, Radio) {
         //       
-        const View = require('./view.js');
+        const View = require('HEADER/view.js');
         //       
-        const appChannel = Radio.channel('app');
+        const appChannel = Radio.channel('ChApp');
         const App = appChannel.request('app:this');
         //
         return Mn.Object.extend({
-            channelName: 'header',
+            channelName: 'ChHeader',
             radioEvents: {
                 'show:m_0': 'showMenu_0',
                 'show:m_1': 'showMenu_1',

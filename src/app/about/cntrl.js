@@ -10,13 +10,13 @@
 define('about.ctrl',['backbone.marionette', 'backbone.radio'], 
     function (Mn, Radio) {
         //       
-        const View = require('./view.js');
+        const View = require('ABOUT/view.js');
         //       
-        const appChannel = Radio.channel('app');
-        const App = appChannel.request('app:this');
+        const Channel = Radio.channel('ChApp');
+        const App = Channel.request('app:this');
         //
         return Mn.Object.extend({
-            channelName: 'about',
+            channelName: 'ChAbout',
             radioEvents: {
                 'show:about': 'showAbout'
             },

@@ -10,14 +10,14 @@
 define('header.view', ['backbone.marionette'],
     function ( Mn ) {
         //
-        const TemplateMenu0 = require('Header/menu_0.tpl');
-        const TemplateMenu1 = require('Header/menu_1.tpl');
-        const TemplateMenu2 = require('Header/menu_2.tpl');
+        const TemplateMenu0 = require('HEADER/menu_0.tpl');
+        const TemplateMenu1 = require('HEADER/menu_1.tpl');
+        const TemplateMenu2 = require('HEADER/menu_2.tpl');
         //
         return { 
             Menu0: Mn.View.extend({
-                template: TemplateMenu0,
-                className: 'container'
+                template: TemplateMenu0//,
+//                className: 'container'
                 
             }),
             Menu1: Mn.View.extend({

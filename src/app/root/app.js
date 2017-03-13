@@ -8,41 +8,51 @@
  */
 
 define('root.app',['backbone', 'backbone.marionette', 'backbone.radio'], 
-function( Bb, Mn, Radio) {
-    //    
+function( Bb, Mn, Ra) {
+    //
+    const RootView = require('ROOT/view.js');
+    //
+ //   const HeaderApp = require('HEADER/app.js');
+    //  
+    const FooterApp = require('FOOTER/app.js');  
+    //  
+//    const AboutApp = require('ABOUT/app.js'); 
 //    require("./styles.less");  
     // Export a function
     return Mn.Application.extend({
-        channelName: 'app',
-        region: '#app',
+        channelName: 'ChApp',
+        region: '#root',
         radioRequests: {
-            'app:this': 'getThis'
+            'app:this': 'appThis'
         },
-        getThis: function(){
+        appThis: function(){
+            console.log('request appThis');
             return this;
         },
-        onStart: function(app, options) {               
-            //    
-            const RootView = require('App/view.js'); 
-            this.view = new RootView();
-            const mainRegion = this.getRegion('app');
-            mainRegion.show(this.view);
+        onBeforeStart: function() {
+          
+        },
+        
+        onStart: function() {   
+            // create root layout     
+            this.showView(new RootView());
+            //                                 
+//            this.header = new HeaderApp();
             //
-            const HeaderApp = require('Header/app.js');                        
-            this.header = new HeaderApp();
-            //
-            const FooterApp = require('Footer/app.js');                        
             this.footer = new FooterApp();
+            const footerCh = Ra.channel('ChFooter');           
+//            footerCh.trigger('show:cpy');  
+            footerCh.trigger('show:msg', {type: 'alert-danger', text: 'pokus'});          
             //
-            const AboutApp = require('About/app.js');                        
-            this.SubApp = new AboutApp();
-            //
-            const headerChannel = Radio.channel('header');           
-            headerChannel.trigger('show:m_0');            
-            const footerChannel = Radio.channel('footer');           
-            footerChannel.trigger('show:cpy');
-            const aboutChannel = Radio.channel('about');           
-            aboutChannel.trigger('show:about');            
+//            this.SubApp = new AboutApp();
+            //         
+//            const headerChannel = Ra.channel('header');           
+//            headerChannel.trigger('show:m_0'); 
+            //         
+
+            //     
+//            const aboutChannel = Ra.channel('about');           
+//            aboutChannel.trigger('show:about');
             // Start history when our application is ready
             Bb.history.start();
         }

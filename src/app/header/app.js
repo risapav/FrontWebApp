@@ -10,9 +10,9 @@
 define('header.app',['backbone.marionette', 'backbone.radio'], 
     function (Mn, Radio) {
         //
-        const Controller = require('./cntrl.js');
+        const Controller = require('HEADER/cntrl.js');
         //
-        const headerChannel = Radio.channel('header');
+        const Channel = Radio.channel('ChHeader');
         //           
         return Mn.AppRouter.extend({
             controller: new Controller,
@@ -23,13 +23,13 @@ define('header.app',['backbone.marionette', 'backbone.radio'],
                 'header:m_2': 'showMenu_2'
             },
             showMenu_0: function(){           
-                headerChannel.trigger('show:m_0');
+                Channel.trigger('show:m_0');
             },            
             showMenu_1: function(){           
-                headerChannel.trigger('show:m_1');
+                Channel.trigger('show:m_1');
             },
             showMenu_2: function(){              
-                headerChannel.trigger('show:m_2');
+                Channel.trigger('show:m_2');
             }    
         });
 });           

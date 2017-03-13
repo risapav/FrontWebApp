@@ -17,7 +17,7 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 var env = process.env.NODE_ENV;
 var config = {
     entry: {
-        vendor: ['jquery', 'backbone', 'backbone.marionette', 'underscore'],
+        vendor: ['backbone', 'backbone.marionette', 'underscore', 'backbone.radio'],
         main: './src/main.js'
     },
     output: {
@@ -58,38 +58,38 @@ var config = {
                     //interpolate: '\\{\\[(.+?)\\]\\}', // {[ value ]}
                     //evaluate: '\\{%([\\s\\S]+?)%\\}', // {% value %}
                     //escape: '\\{\\{(.+?)\\}\\}'	// {{ value }}
-					interpolate: '\\{\\{=(.+?)\\}\\}',	// {{= value }}
-					escape: '\\{\\{-(.+?)\\}\\}',	// {{- value }} 
-					evaluate: '\\{\\{(.+?)\\}\\}' 	// {{ value }}				
+                    interpolate: '\\{\\{=(.+?)\\}\\}',	// {{= value }}
+                    escape: '\\{\\{-(.+?)\\}\\}',	// {{- value }} 
+                    evaluate: '\\{\\{(.+?)\\}\\}' 	// {{ value }}				
                 }
             },
-			{ 	test: /\.ejs$/, loader: "ejs-loader", query: { 
-                    variable: 'data', 
-                    interpolate : '\\{\\{(.+?)\\}\\}', 
-                    evaluate : '\\[\\[(.+?)\\]\\]' 										
-				} 
-			},
+            { 	test: /\.ejs$/, loader: "ejs-loader", query: { 
+                variable: 'data', 
+                interpolate : '\\{\\{(.+?)\\}\\}', 
+                evaluate : '\\[\\[(.+?)\\]\\]' 										
+                } 
+            },
 
-			{ test: /\.html$/, loader: 'html-loader', query: { minimize: false } }
+            { test: /\.html$/, loader: 'html-loader', query: { minimize: false } }
                    
         ]
     }, 
     plugins: [
         new ExtractTextPlugin({ filename: '[name].css', disable: false, allChunks: true }),
         new webpack.ProvidePlugin({ 
-			$: 'jquery', 
-			jQuery: 'jquery',
-			_: "underscore" 
-		})
+            $: 'jquery', 
+            jQuery: 'jquery',
+            _: "underscore" 
+        })
     ],
     resolve: {
         alias: {
-            Less: path.resolve(__dirname, 'src/less/'),
-            Lib: path.resolve(__dirname, 'src/lib/'),
-            App: path.resolve(__dirname, 'src/app/root/'),
-            Footer: path.resolve(__dirname, 'src/app/footer/'),
-            About: path.resolve(__dirname, 'src/app/about/'),
-            Header: path.resolve(__dirname, 'src/app/header/')
+            LESS: path.resolve(__dirname, 'src/less/'),
+            LIB: path.resolve(__dirname, 'src/lib/'),
+            ROOT: path.resolve(__dirname, 'src/app/root/'),
+            HEADER: path.resolve(__dirname, 'src/app/header/'),
+            FOOTER: path.resolve(__dirname, 'src/app/footer/'),
+            ABOUT: path.resolve(__dirname, 'src/app/about/')
         },
         modules: [
             'node_modules'
@@ -146,18 +146,22 @@ if (env === 'production-multi') {
     console.log('config => ', env);
     config.plugins.push( 
         new webpack.optimize.CommonsChunkPlugin({
-            name: 'common',
+            name: "commons",
+            // (the commons chunk name)
+            filename: "commons.js"
+            
+ /*           name: 'common',
             chunks: ['vendor', 'main'],
-            children:  true,
-            async: true
+            children:  false,
+            async: true*/
         }),
         new webpack.optimize.UglifyJsPlugin({
             mangle: true,
             compress: {
-                unused: true,
-                dead_code: true,
+                unused: false,
+                dead_code: false,
                 warnings: false,
-                screw_ie8: true
+                screw_ie8: false
             }         
         }), 
         new webpack.optimize.DedupePlugin()
