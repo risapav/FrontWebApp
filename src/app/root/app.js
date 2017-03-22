@@ -12,9 +12,12 @@ function( Bb, Mn, Ra) {
     //
     const RootView = require('ROOT/view.js');
     //
- //   const HeaderApp = require('HEADER/app.js');
+    const ModalApp = require('MODAL/app.js');     
+    //
+    const HeaderApp = require('HEADER/app.js');
     //  
     const FooterApp = require('FOOTER/app.js');  
+   
     //  
 //    const AboutApp = require('ABOUT/app.js'); 
 //    require("./styles.less");  
@@ -26,31 +29,21 @@ function( Bb, Mn, Ra) {
             'app:this': 'appThis'
         },
         appThis: function(){
-            console.log('request appThis');
             return this;
         },
-        onBeforeStart: function() {
-          
-        },
-        
         onStart: function() {   
             // create root layout     
             this.showView(new RootView());
-            //                                 
-//            this.header = new HeaderApp();
-            //
-            this.footer = new FooterApp();
-            const footerCh = Ra.channel('ChFooter');           
-//            footerCh.trigger('show:cpy');  
-            footerCh.trigger('show:msg', {type: 'alert-danger', text: 'pokus'});          
+            // create modal
+            this.modalA = new ModalApp();            
+            // create footer
+            this.footerA = new FooterApp();
+            Ra.channel('ChFooter').trigger('show:cpy');  
+            // create header                                 
+            this.headerA = new HeaderApp();
+            Ra.channel('ChHeader').trigger('show:menu');
             //
 //            this.SubApp = new AboutApp();
-            //         
-//            const headerChannel = Ra.channel('header');           
-//            headerChannel.trigger('show:m_0'); 
-            //         
-
-            //     
 //            const aboutChannel = Ra.channel('about');           
 //            aboutChannel.trigger('show:about');
             // Start history when our application is ready

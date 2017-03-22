@@ -7,14 +7,14 @@
  * Compiled under Webpack 2 tools
  */
         
-require(['ROOT/app.js'], function(App){
-    //    
+require(['ROOT/app.js', 'bootstrap'], function(App){   
     //    
     const app = new App({
         title: 'Marionette spustene', 
         version: '0.0.1', 
         prgname: 'APP_1',
-        msg_delay: 5000
+        msg_delay: 5000,
+        role: 'admin'
     });
     //start app   
     app.start();

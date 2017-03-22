@@ -7,31 +7,61 @@
  * Compiled under Webpack 2 tools
  */
 
-define('header.ctrl',['backbone.marionette', 'backbone.radio'], 
-    function (Mn, Radio) {
-        //       
-        const View = require('HEADER/view.js');
-        //       
-        const appChannel = Radio.channel('ChApp');
-        const App = appChannel.request('app:this');
-        //
-        return Mn.Object.extend({
-            channelName: 'ChHeader',
-            radioEvents: {
-                'show:m_0': 'showMenu_0',
-                'show:m_1': 'showMenu_1',
-                'show:m_2': 'showMenu_2'
-            },
-            showMenu_0: function(){
-                App.view.showChildView('header', new View.Menu0());
-            },
-            showMenu_1: function(){
-                App.view.showChildView('header', new View.Menu1());                
-            },
-            showMenu_2: function(){
-                App.view.showChildView('header', new View.Menu2());                
+define('header.ctrl',['backbone.marionette', 'backbone.radio', 'moment'], 
+function (Mn, Ra, Mo) {
+    //       
+    const View = require('HEADER/view.js');
+    //       
+    return Mn.Object.extend({
+        menuView: null,
+        leftView: null,
+        rightView: null,
+        channelName: 'ChHeader',          
+        radioEvents: {
+            'show:menu': 'showMenu',
+            'show:time': 'showTime'
+        },
+        timeout: null,
+        onBeforeDestroy: function(){
+            //destroy timeout
+            if( this.timeout ){
+                clearInterval(this.timeout);
+                this.timeout = null;
             }
-        });
+        },        
+        showMenu: function(){
+            // find App object           
+            const App = Ra.channel('ChApp').request('app:this');
+            // prepare views
+            this.menuV = new View.Menu();            
+            // find parent view            
+            const paView = App.getView();         
+            paView.showChildView('header', this.menuV);
+            // prepare subview left
+            this.leftV = new View.Left();
+            this.leftV.render();
+            // prepare subview right
+            this.rightV = new View.Right();
+            this.rightV.render();
+            // prepare subview time
+            this.timeV = new View.Time();
+            this.timeV.render();
+            //destroy timeout
+            if( this.timeout ){
+                clearInterval(this.timeout);
+            }
+            this.timeout = setInterval(function(){
+                //
+                const headerCh = Ra.channel('ChHeader');           
+                headerCh.trigger('show:time');                    
+            }, 1000);            
+        },
+        showTime: function(){ 
+            var now = new Mo();
+            var text = now.format('DD.MM.YYYY HH:mm:ss');
+            document.getElementById('dtText').innerHTML=text;
+        }       
+    });
 });
 
 /*

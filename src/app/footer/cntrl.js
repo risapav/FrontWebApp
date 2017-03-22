@@ -27,16 +27,15 @@ define('footer.ctrl',['backbone.marionette', 'backbone.radio'],
                 }
             },
             showMsg: function (options) {                
-                // find App object     
-                const Channel = Ra.channel('ChApp');
-                const App = Channel.request('app:this');
+                // find App object             
+                const App = Ra.channel('ChApp').request('app:this');
                 // find parent view
                 const paView = App.getView();
                 const chView = new View.Msg(options);
                 paView.showChildView('footer', chView);
                 //destroy timeout
                 if( this.timeout ){
-                    clearTimeout(timeout);
+                    clearTimeout(this.timeout);
                 }
                 this.timeout = setTimeout(function(){
                     //
@@ -45,9 +44,8 @@ define('footer.ctrl',['backbone.marionette', 'backbone.radio'],
                 }, App.getOption('msg_delay'));
             },
             showCpy: function () {
-                // find App object      
-                const Channel = Ra.channel('ChApp');
-                const App = Channel.request('app:this');
+                // find App object           
+                const App = Ra.channel('ChApp').request('app:this');
                 // find parent view
                 const paView = App.getView();
                 paView.showChildView('footer', new View.Cpy);               

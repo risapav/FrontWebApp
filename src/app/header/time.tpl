@@ -1,5 +1,5 @@
-<ul class="nav navbar-nav">
-    <li>
-        <a id="time" class="navbar-brand" href="#menu"></a>
-    </li>
-</ul>
+<li>
+<!--    <a href="#"><span id="dtText"></span></a> -->
+    <a><span id="dtText"></span></a>
+</li>
+

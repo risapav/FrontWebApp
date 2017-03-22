@@ -10,22 +10,22 @@
 define('footer.app',['backbone.marionette', 'backbone.radio'], 
     function (Mn, Ra) {
         //
-        const Controller = require('FOOTER/cntrl.js');
-        //
-        const Channel = Ra.channel('ChFooter');
+        const Ch = Ra.channel('ChFooter');
         //     
+        const Ct = require('FOOTER/cntrl.js');
+        //
         return Mn.AppRouter.extend({
-            controller: new Controller,
+            controller: new Ct,
 
             routes: {
-                'footer:show': 'showFooter',
+                'footer': 'showFooter',
                 'footer:message': 'msgFooter'
             },
             showFooter: function(){           
-                Channel.trigger('show:cpy');
+                Ch.trigger('show:cpy');
             },
             msgFooter: function(options){              
-                Channel.trigger('show:msg', options);
+                Ch.trigger('show:msg', options);
             }    
         });
 });   

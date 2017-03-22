@@ -7,15 +7,14 @@
  * Compiled under Webpack 2 tools
  */
 
-define('root.view', ['underscore', 'backbone.marionette'],
-    function (_, Mn) { 
-        //
-        const Template = require('ROOT/layout.tpl');
+define('root.view', ['backbone.marionette'],
+    function ( Mn ) { 
         //
         return Mn.View.extend({
-            template: Template,
+            template: require('ROOT/layout.tpl'),
             regions: {
                 header: '#header',
+                dialog: '#dialog',
                 footer: '#footer',
                 main: '#main'
             }
