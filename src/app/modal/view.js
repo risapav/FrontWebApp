@@ -7,8 +7,8 @@
  * Compiled under Webpack 2 tools
  */
 
-define('modal.view', ['backbone.marionette', 'underscore'],
-function ( Mn, _ ) {
+define('modal.view', ['backbone.marionette', 'backbone.radio', 'underscore'],
+function ( Mn, Ra, _ ) {
     //
     return {      
         header: Mn.View.extend({
@@ -46,17 +46,24 @@ function ( Mn, _ ) {
                 header: '.modal-header',
                 body: '.modal-body',
                 footer: '.modal-footer'
-            },     
+            },              
             onDestroy: function(){
                 console.log('onDestroy modal');
-            },            
+            },
             onModalize: function(region){ 
+                //feedback for close modalize event
+                region.$el.on('hidden.bs.modal', function (e) {
+                    const Ch = Ra.channel('ChModal');
+                    Ch.trigger('close:modal');
+                });         
+                //show modalized view
                 region.$el.modal('show');
-console.log('onModalize', region);                
             },
             onDemodalize: function(region){ 
-                region.$el.modal('hide'); 
-console.log('onDeModalize', region);                
+                //shut off feedback for close modalize event
+                region.$el.off('hidden.bs.modal');
+                //remove modalized view
+                region.$el.modal('hide');              
             }                       
         })
     };
