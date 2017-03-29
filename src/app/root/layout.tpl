@@ -8,7 +8,9 @@ Compiled under Webpack 2 tools
 -->
 <!--aria-labelledby="exampleModalLabel" aria-hidden="true"
  aria-labelledby="myModalLabel" aria-hidden="false"-->
-<div id="dialog" class="modal fade" tabindex="-1" role="dialog"></div>
+<div id="dialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
+<!-- loader -->
+<div class="loader" style="display:block;"></div>
 <!-- Fixed navbar -->
 <!-- <nav class="navbar navbar-inverse"> -->
 <nav id="header" class="navbar navbar-default navbar-fixed-top">Loading... header</nav>

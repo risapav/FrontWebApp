@@ -32,6 +32,7 @@ function (Mn, Ra, Mo) {
         showMenu: function(){
             // find App object           
             const App = Ra.channel('ChApp').request('app:this');
+Ra.channel('ChApp').request('app:lon');            
             // prepare views
             this.menuV = new View.Menu();            
             // find parent view            
@@ -54,7 +55,8 @@ function (Mn, Ra, Mo) {
                 //
                 const headerCh = Ra.channel('ChHeader');           
                 headerCh.trigger('show:time');                    
-            }, 1000);            
+            }, 1000);  
+Ra.channel('ChApp').request('app:loff');             
         },
         showTime: function(){ 
             var now = new Mo();

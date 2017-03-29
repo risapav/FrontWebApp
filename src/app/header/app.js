@@ -19,8 +19,20 @@ define('header.app',['backbone.marionette', 'backbone.radio'],
             routes: {
                 'menu': 'showMenu',
                 'left': 'showLeft',
-                'right': 'showRight'
+                'right': 'showRight',
+            'lon': 'appLoaderOn',
+            'loff': 'appLoaderOff'
             },
+            appLoaderOn: function(){
+console.log('appLoaderOn1');                  
+                Ra.channel('ChApp').request('app:lon');
+console.log('appLoaderOn2');                
+            },
+            appLoaderOff: function(){
+console.log('appLoaderOff1');                
+                Ra.channel('ChApp').request('app:loff');
+console.log('appLoaderOff2');                
+            },            
             showMenu: function(){                     
                 Ch.trigger('show:menu');
             },            

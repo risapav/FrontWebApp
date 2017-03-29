@@ -7,12 +7,14 @@
  * Compiled under Webpack 2 tools
  */
 
-define('root.app',['backbone', 'backbone.marionette', 'backbone.radio'], 
-function( Bb, Mn, Ra) {
+define('root.app',['backbone', 'backbone.marionette', 'backbone.radio', 'jquery'], 
+function( Bb, Mn, Ra, $) {
     //
     const RootView = require('ROOT/view.js');
     //
     const ModalApp = require('MODAL/app.js');     
+    //
+    const LoginApp = require('LOGIN/app.js');     
     //
     const HeaderApp = require('HEADER/app.js');
     //  
@@ -26,16 +28,26 @@ function( Bb, Mn, Ra) {
         channelName: 'ChApp',
         region: '#root',
         radioRequests: {
-            'app:this': 'appThis'
+            'app:this': 'appThis',
+            'app:lon': 'appLoaderOn',
+            'app:loff': 'appLoaderOff'
         },
         appThis: function(){
             return this;
         },
+        appLoaderOn: function(){
+            $('.loader').show();
+        },         
+        appLoaderOff: function(){  
+            $('.loader').hide();
+        },         
         onStart: function() {   
             // create root layout     
             this.showView(new RootView());
             // create modal
-            this.modalA = new ModalApp();            
+            this.modalA = new ModalApp();     
+            // create login
+            this.loginA = new LoginApp();             
             // create footer
             this.footerA = new FooterApp();
             Ra.channel('ChFooter').trigger('show:cpy');  

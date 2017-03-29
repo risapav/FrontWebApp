@@ -17,7 +17,15 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 var env = process.env.NODE_ENV;
 var config = {
     entry: {
-        vendor: ['backbone', 'backbone.marionette', 'underscore', 'backbone.radio', 'moment'],
+        vendor: [
+            'backbone', 
+            'backbone.marionette', 
+            'underscore', 
+            'backbone.radio', 
+            'moment',
+            'jquery',
+            'bootstrap'
+        ],
         main: './src/main.js'
     },
     output: {
@@ -88,6 +96,7 @@ var config = {
             LIB: path.resolve(__dirname, 'src/lib/'),
             ROOT: path.resolve(__dirname, 'src/app/root/'),
             MODAL: path.resolve(__dirname, 'src/app/modal/'),
+            LOGIN: path.resolve(__dirname, 'src/app/login/'),
             HEADER: path.resolve(__dirname, 'src/app/header/'),
             FOOTER: path.resolve(__dirname, 'src/app/footer/'),
             ABOUT: path.resolve(__dirname, 'src/app/about/')

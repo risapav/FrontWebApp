@@ -7,18 +7,11 @@
  * Compiled under Webpack 2 tools
  */
 
-define('modal.view', ['backbone.marionette', 'backbone.radio', 'underscore'],
-function ( Mn, Ra, _ ) {
+define('modal.view', ['backbone.marionette', 'backbone.radio'],
+function ( Mn, Ra ) {
     //
     return {      
-        header: Mn.View.extend({
-            attributes: {
-                'type': 'button',
-                'data-dismiss': 'modal',
-                'aria-label': 'Close'
-            },
-            className: 'close',
-            tagName: 'button',
+        header: Mn.View.extend({        
             template: require('MODAL/header.tpl'),
             onDestroy: function(){
                 console.log('onDestroy mheader');

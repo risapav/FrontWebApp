@@ -7,4 +7,4 @@ Works at frontend browser side
 Compiled under Webpack 2 tools
 -->
 
-<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+<button type="button" class="btn btn-default" data-dismiss="modal">Zrušiť</button>

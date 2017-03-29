@@ -13,6 +13,7 @@ define('root.view', ['backbone.marionette'],
         return Mn.View.extend({
             template: require('ROOT/layout.tpl'),
             regions: {
+                loader: ".loader",
                 header: '#header',
                 dialog: '#dialog',
                 footer: '#footer',

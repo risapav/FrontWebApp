@@ -21,8 +21,8 @@ function (Mn, Ra) {
             'modal': 'showModal',
             'modal:close': 'closeModal'
         },
-        showModal: function(){           
-            Ch.trigger('show:modal');
+        showModal: function(options){           
+            Ch.trigger('show:modal', options);
         },
         closeModal: function(){           
             Ch.trigger('close:modal');

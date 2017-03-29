@@ -7,8 +7,8 @@
  * Compiled under Webpack 2 tools
  */
 
-define('modal.ctrl',['backbone.marionette', 'backbone.radio'], 
-function (Mn, Ra) {
+define('modal.ctrl',['backbone.marionette', 'backbone.radio', 'underscore'], 
+function (Mn, Ra, _) {
     //       
     const View = require('MODAL/view.js');         
     //
@@ -36,7 +36,13 @@ console.log('modal.ctrl onBeforeDestroy');
             }
             dialogRegion.empty();                
         },
-        showModal: function () {
+        showModal: function (options) {
+            if(options === null){options = {};}
+            const opt = _.defaults(options, {
+                header: View.header,
+                body: View.body,
+                footer: View.footer
+            });
             // find App object           
             const App = Ra.channel('ChApp').request('app:this');
             // prepare views
@@ -45,14 +51,14 @@ console.log('modal.ctrl onBeforeDestroy');
             const paView = App.getView();
             const dialogRegion = paView.getRegion('dialog');
             dialogRegion.show(this.modalView);     
-            // prepare subview header
-            this.header = new View.header();
+            // prepare subview header            
+            this.header = new opt.header;
             this.modalView.showChildView('header', this.header);
             // prepare subview body
-            this.body = new View.body();
+            this.body = new opt.body;      
             this.modalView.showChildView('body', this.body);
             // prepare subview footer
-            this.footer = new View.footer();
+            this.footer = new opt.footer;       
             this.modalView.showChildView('footer', this.footer);          
             //modalize view
             if(this.modalView){
