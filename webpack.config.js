@@ -19,7 +19,8 @@ var config = {
     entry: {
         vendor: [
             'backbone', 
-            'backbone.marionette', 
+            'backbone.marionette',
+            'backbone.syphon',
             'underscore', 
             'backbone.radio', 
             'moment',
@@ -94,6 +95,7 @@ var config = {
         alias: {
             LESS: path.resolve(__dirname, 'src/less/'),
             LIB: path.resolve(__dirname, 'src/lib/'),
+            ENTITIES: path.resolve(__dirname, 'src/app/entities/'),
             ROOT: path.resolve(__dirname, 'src/app/root/'),
             MODAL: path.resolve(__dirname, 'src/app/modal/'),
             LOGIN: path.resolve(__dirname, 'src/app/login/'),

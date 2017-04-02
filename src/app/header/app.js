@@ -20,27 +20,35 @@ define('header.app',['backbone.marionette', 'backbone.radio'],
                 'menu': 'showMenu',
                 'left': 'showLeft',
                 'right': 'showRight',
-            'lon': 'appLoaderOn',
-            'loff': 'appLoaderOff'
+                'lon': 'appLoaderOn',
+                'loff': 'appLoaderOff',
+                'user': 'doUser',
+                'admin': 'doAdmin',
+                'super': 'doSuper'
             },
-            appLoaderOn: function(){
-console.log('appLoaderOn1');                  
-                Ra.channel('ChApp').request('app:lon');
-console.log('appLoaderOn2');                
+            doUser: function(){
+                Ch.trigger('do:role',{role: ' User'});
             },
-            appLoaderOff: function(){
-console.log('appLoaderOff1');                
-                Ra.channel('ChApp').request('app:loff');
-console.log('appLoaderOff2');                
+            doAdmin: function(){
+                Ch.trigger('do:role',{role: ' Admin'});
+            },
+            doSuper: function(){
+                Ch.trigger('do:role',{role: ' Super'});
             },            
-            showMenu: function(){                     
+            appLoaderOn: function (){                
+                Ra.channel('ChApp').request('app:lon');                
+            },
+            appLoaderOff: function (){               
+                Ra.channel('ChApp').request('app:loff');             
+            },            
+            showMenu: function (){                     
                 Ch.trigger('show:menu');
             },            
-            showLeft: function(){                   
+            showLeft: function (){                   
                 Ch.trigger('show:left');
             },
-            showRight: function(){                   
-                Ch.trigger('show:right');
+            showRight: function (options){                   
+                Ch.trigger('show:right', options);
             }    
         });
 });           

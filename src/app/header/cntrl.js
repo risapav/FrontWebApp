@@ -7,28 +7,49 @@
  * Compiled under Webpack 2 tools
  */
 
-define('header.ctrl',['backbone.marionette', 'backbone.radio', 'moment'], 
-function (Mn, Ra, Mo) {
+define('header.ctrl',['backbone.marionette', 'backbone', 'backbone.radio', 'moment'], 
+function (Mn, Ba, Ra, Mo) {
     //       
     const View = require('HEADER/view.js');
     //       
+    const Model = Ba.Model.extend({
+        defaults:{
+            role: ' User'
+        }
+    });
+    //
     return Mn.Object.extend({
+        model: null,
         menuView: null,
         leftView: null,
         rightView: null,
         channelName: 'ChHeader',          
         radioEvents: {
+            'do:role': 'doRole',
             'show:menu': 'showMenu',
             'show:time': 'showTime'
         },
         timeout: null,
+        initialize: function(){
+            this.model = new Model;
+        },
         onBeforeDestroy: function(){
             //destroy timeout
             if( this.timeout ){
                 clearInterval(this.timeout);
                 this.timeout = null;
             }
-        },        
+            //destroy model
+            if( this.model ){
+                delete this.model;
+                this.model = null;
+            }
+        },
+        doRole: function(data){
+            if(data){
+                this.model.set(data);               
+            }
+        },
         showMenu: function(){
             // find App object           
             const App = Ra.channel('ChApp').request('app:this');
@@ -39,10 +60,10 @@ Ra.channel('ChApp').request('app:lon');
             const paView = App.getView();         
             paView.showChildView('header', this.menuV);
             // prepare subview left
-            this.leftV = new View.Left();
+            this.leftV = new View.Left({model: this.model});
             this.leftV.render();
             // prepare subview right
-            this.rightV = new View.Right();
+            this.rightV = new View.Right({model: this.model});
             this.rightV.render();
             // prepare subview time
             this.timeV = new View.Time();

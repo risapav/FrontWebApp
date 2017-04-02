@@ -7,6 +7,14 @@
   </ul>
 </li>
 <li class="dropdown">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Role<span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li><a href="#user">User</a></li>
+    <li><a href="#admin">Admin</a></li>
+    <li><a href="#super">Super</a></li>
+  </ul>
+</li>
+<li class="dropdown">
   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
   <ul class="dropdown-menu">
     <li><a href="/about/">Info</a></li>
@@ -16,3 +24,11 @@
 </li>
 <li><a href="#">Page 2</a></li>
 <li><a href="#modal">Modal</a></li>
+<li class="dropdown">
+  <a class="dropdown-toggle" data-toggle="dropdown">{{= role }}<span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li><a href="/about/">Info</a></li>
+    <li><a href="/version/">Verzia</a></li>
+    <li><a href="/config/">Nastavenie</a></li>
+  </ul>
+</li>

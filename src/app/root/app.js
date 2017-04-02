@@ -29,19 +29,19 @@ function( Bb, Mn, Ra, $) {
         region: '#root',
         radioRequests: {
             'app:this': 'appThis',
-            'app:lon': 'appLoaderOn',
-            'app:loff': 'appLoaderOff'
+            'app:lon': 'appLoOn',
+            'app:loff': 'appLoOff'
         },
-        appThis: function(){
+        appThis: function (){
             return this;
         },
-        appLoaderOn: function(){
+        appLoOn: function (){
             $('.loader').show();
         },         
-        appLoaderOff: function(){  
+        appLoOff: function (){  
             $('.loader').hide();
         },         
-        onStart: function() {   
+        onStart: function () {   
             // create root layout     
             this.showView(new RootView());
             // create modal

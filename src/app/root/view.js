@@ -8,16 +8,16 @@
  */
 
 define('root.view', ['backbone.marionette'],
-    function ( Mn ) { 
-        //
-        return Mn.View.extend({
-            template: require('ROOT/layout.tpl'),
-            regions: {
-                loader: ".loader",
-                header: '#header',
-                dialog: '#dialog',
-                footer: '#footer',
-                main: '#main'
-            }
-        });       
+function ( Mn ) { 
+    //
+    return Mn.View.extend({
+        template: require('ROOT/layout.tpl'),
+        regions: {
+            loader: '.loader',
+            header: '#header',
+            dialog: '#dialog',
+            footer: '#footer',
+            main: '#main'
+        }
+    });       
 });

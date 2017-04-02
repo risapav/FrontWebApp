@@ -21,10 +21,10 @@ define('footer.app',['backbone.marionette', 'backbone.radio'],
                 'footer': 'showFooter',
                 'footer:message': 'msgFooter'
             },
-            showFooter: function(){           
+            showFooter: function (){           
                 Ch.trigger('show:cpy');
             },
-            msgFooter: function(options){              
+            msgFooter: function (options){              
                 Ch.trigger('show:msg', options);
             }    
         });

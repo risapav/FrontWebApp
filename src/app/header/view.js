@@ -31,54 +31,30 @@ function ( Mn ) {
         Left: Mn.View.extend({
             template: require('HEADER/left.tpl'),
             el: '#left',
+            modelEvents: {
+                'change:role': 'actOnChange'
+            },
+            actOnChange: function(){
+                this.render();
+            },
             onDestroy: function(){
                 console.log('onDestroy Left');
             }            
         }), 
         Right: Mn.View.extend({
-            template: require('HEADER/right.tpl'),
-            el: '#right',
-            
+            template: require('HEADER/right.tpl'),            
+            el: '#right',  
+            modelEvents: {
+                'change:role': 'actOnChange'
+            },
+            actOnChange: function(){
+                this.render();
+            },
             onDestroy: function(){
                 console.log('onDestroy Right');
-            },
-    /** reakcie na kliknutie v menu */
-  events: {
-    'click a#login': function(a,b,c) {
-      console.log('a login clicked', a,b,c);
-    },
-        'click a': function(a,b,c) {
-      console.log('a clicked', a,b,c);
-    }        
-  }    
-    /*
-ui: {
-    login: '#login',
-    logout: '#logout'
-},
-events: {
-    'click @ui.login': 'Flogin',
-    'click @ui.logout': 'Flogin'
-},
-            */
-/*
-            events: {
-                'click #login': 'Flogin',//'loginCl',
-                'click #logout': 'Flogin'//'logoutCl'
-            },
-*/
-/*
-  triggers: {
-    'click login': 'link:clicked'
-  },
-
-  onLinkClicked: function(view, event) {
-    console.log('Show the modal',view, event);
-  } ,           
-            Flogin: function(a,b,c){
-                console.log('Flogin', a, b, c);
+            },   
+            onRender: function(){               
             }
-*/            
         }),
         Time: Mn.View.extend({
             template: require('HEADER/time.tpl'),

@@ -7,10 +7,11 @@
  * Compiled under Webpack 2 tools
  */
 
-define('login.view', ['backbone.marionette', 'backbone.radio', 'backbone', 'underscore'],
-function ( Mn, Ra, Ba, _ ) {
+define('login.view', ['backbone.marionette', 'backbone.radio', 'backbone', 'backbone.syphon', 'underscore'],
+function ( Mn, Ra, Ba, Sy, _ ) {
     //
-    const User = new Ba.Model({user: 'pokus', pswd: '', remember: true});
+    const User = require('ENTITIES/user.js');
+console.log('User', User);    
     //
     return {      
         header: Mn.View.extend({
@@ -20,8 +21,37 @@ function ( Mn, Ra, Ba, _ ) {
             }            
         }),    
         body: Mn.View.extend({
-            model: User,
+            model: new User,
             template: require('LOGIN/body.tpl'),
+            events: {
+                'submit form': 'signForm'
+            },
+            signForm: function(e){
+                e.preventDefault();
+                var data = Sy.serialize(this);
+                this.model.set(data);
+                this.model.save();
+                
+/*                        
+                $('button').bind('click', function() {
+                    $.post('/?ts=' + Date.now(), $('#f').serialize(), function(d) {
+                        var err = $('#error');
+                        if (d instanceof Array) {
+                            err.empty();
+                            d.forEach(function(o) {
+                                err.append('<div>' + o.error + '</div>');
+                            });
+                            err.show();
+                            return;
+                        };
+                        err.hide();
+                        window.location.href = '/';
+                    });
+                });
+*/                
+                const Ch = Ra.channel('ChLogin');
+                Ch.trigger('signin', this.model.toJSON());    
+            },
             onDestroy: function(){
                 console.log('onDestroy mbody');
             }            

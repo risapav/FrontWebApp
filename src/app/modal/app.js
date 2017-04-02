@@ -21,10 +21,10 @@ function (Mn, Ra) {
             'modal': 'showModal',
             'modal:close': 'closeModal'
         },
-        showModal: function(options){           
+        showModal: function (options){           
             Ch.trigger('show:modal', options);
         },
-        closeModal: function(){           
+        closeModal: function (){           
             Ch.trigger('close:modal');
         }            
     });

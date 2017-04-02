@@ -10,7 +10,7 @@ Compiled under Webpack 2 tools
 <form accept-charset="UTF-8" role="form">
     <div class="form-group">
         <label for="exampleInputName">Prihlasovacie meno</label>
-        <input class="form-control" name="user" type="text" placeholder="Meno" data-validation="user" value="{{= user }}">
+        <input class="form-control" name="name" type="text" placeholder="Meno" data-validation="name" value="{{= name }}">
     </div>    
     <div class="form-group">
         <label for="exampleInputPassword">Prihlasovacie heslo</label>
@@ -21,7 +21,7 @@ Compiled under Webpack 2 tools
             <input name="remember" type="checkbox" value="{{= remember }}"/>Zapamät prihásenie
         </label>
     </div>
-    <button type="submit" class="btn btn-default btn-success btn-block">Prihlásiť</button>
-    <!--<input class="js-login btn btn-lg btn-success btn-block" type="button" value="Prihlásiť">-->
+    <!--<button type="submit" class="js-signin btn btn-default btn-success btn-block">Prihlásiť</button>-->
+    <input class="js-signin btn btn-lg btn-success btn-block" type="submit" value="Prihlásiť">
   <!--<input class="btn btn-lg btn-success btn-block" type="submit" value="Login">-->
 </form>

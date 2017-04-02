@@ -18,14 +18,50 @@ function (Mn, Ra) {
         controller: new Ct,
 
         routes: {
-            'login': 'doLogin',
-            'logout': 'doLogout'
+            'login': 'Login',
+            'logout': 'Logout',
+            'signin': 'Signin',
+            'signout': 'Signout'
         },
-        doLogin: function(){           
+        Login: function (){           
             Ch.trigger('do:login');
         },
-        doLogout: function(){           
+        Logout: function (){           
             Ch.trigger('do:logout');
-        }            
+        },
+        Signin: function (options){
+            Ch.trigger('signin', options);
+/*            
+            options = _.extend({
+                model: App.HeaderApp.Show.Model,
+                type: 'POST',
+                data: _.pick(App.HeaderApp.Show.Model.attributes, 
+                    'name', 'pswd', 'remember' ),
+                url:  App.settings.get('urlRoot') + App.settings.get('urlSignIn')
+            }, options);
+*/            
+            /** vykonaj ping na server */
+/*            
+            App.executeAction('LoginApp', App.LoginApp.Show.Controller.Ping, options);  
+            
+            $.post('/?ts=' + Date.now(), $('#f').serialize(), function(d) {
+                    var err = $('#error');
+                    if (d instanceof Array) {
+                            err.empty();
+                            d.forEach(function(o) {
+                                    err.append('<div>' + o.error + '</div>');
+                            });
+                            err.show();
+                            return;
+                    };
+                    err.hide();
+                    window.location.href = '/';
+            });
+*/            
+        },
+        SignOut: function (options){
+            Ch.trigger('signout', options);           
+        }
+
     });
 });   

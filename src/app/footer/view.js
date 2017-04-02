@@ -22,10 +22,10 @@ function ( Mn ) {
                     text: this.getOption('text')
                 };
             },
-            className: 'container',
-            initialize: function(options){
+            className: 'alert',
+            initialize: function(options){               
                 if (options.type) {
-                    this.$el.addClass(options.type);
+                    this.$el.addClass('alert-' + options.type);
                 }
             }
         })
