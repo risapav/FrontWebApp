@@ -25,19 +25,22 @@ function( Bb, Mn, Ra, $) {
 //    require("./styles.less");  
     // Export a function
     return Mn.Application.extend({
-        channelName: 'ChApp',
+        channelName: 'app',
         region: '#root',
         radioRequests: {
             'app:this': 'appThis',
             'app:lon': 'appLoOn',
             'app:loff': 'appLoOff'
         },
+        //vrat 'this' hlavnej aplikacie
         appThis: function (){
             return this;
         },
+        //zobraz data loader
         appLoOn: function (){
             $('.loader').show();
-        },         
+        },      
+        //skry data loader
         appLoOff: function (){  
             $('.loader').hide();
         },         
@@ -50,10 +53,10 @@ function( Bb, Mn, Ra, $) {
             this.loginA = new LoginApp();             
             // create footer
             this.footerA = new FooterApp();
-            Ra.channel('ChFooter').trigger('show:cpy');  
+            Ra.channel('foo').trigger('show:cpy');  
             // create header                                 
             this.headerA = new HeaderApp();
-            Ra.channel('ChHeader').trigger('show:menu');
+            Ra.channel('menu').trigger('show:menu');
             //
 //            this.SubApp = new AboutApp();
 //            const aboutChannel = Ra.channel('about');           

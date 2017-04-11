@@ -23,5 +23,4 @@ Compiled under Webpack 2 tools
     </div>
     <!--<button type="submit" class="js-signin btn btn-default btn-success btn-block">Prihlásiť</button>-->
     <input class="js-signin btn btn-lg btn-success btn-block" type="submit" value="Prihlásiť">
-  <!--<input class="btn btn-lg btn-success btn-block" type="submit" value="Login">-->
 </form>

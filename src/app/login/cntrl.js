@@ -12,13 +12,14 @@ function (Mn, Ra, $, _) {
     //       
     const View = require('LOGIN/view.js'); 
     //
-    const Ch = Ra.channel('ChModal');
+    const Ch = Ra.channel('modal');
     //
     return Mn.Object.extend({
-        channelName: 'ChLogin',
+        channelName: 'login',
         radioEvents: {
-            'do:login': 'doLogin',
-            'do:logout': 'doLogout',
+            'ping': 'doPing',
+            'login': 'doLogin',
+            'logout': 'doLogout',
             'signin': 'doSignin'
         },
         onBeforeDestroy: function(){
@@ -30,34 +31,84 @@ console.log('login.ctrl onBeforeDestroy');
                 body: View.body
             });
         },
-        doSignin: function(options){
-console.log('doSignin', options);            
-        },
-        doLogout: function(options){    
-console.log('doSignout', options);     
+        doSignin: function(data){
+            //
+            var string = '/?ts=' + Date.now();
 
+console.log('doSignin', data, string);            
+           //
+            var request = $.ajax({
+                url: '/login/',
+                method: 'POST',
+                data: data,
+                dataType: 'json',
+                timeout: 5000
+            });
+            //
+            request.done(function( data ) {
+                if(data.msg){
+                    Ra.channel('foo').trigger('show:msg', data.msg);
+                }
+            });
+            //
+            request.fail(function( jqXHR, textStatus ) {
+                const obj = {
+                    type: 'danger',
+                    text: 'Server neodpovedal: ' + textStatus
+                };
+                Ra.channel('foo').trigger('show:msg', obj );
+            });             
+        },
+        doLogout: function(options){      
+            //
             var request = $.ajax({
                 url: '/logout/',
                 method: 'POST',
-                data: { 
-                    id : 1,
-                    
-                    role: 'user'
-                },
-                dataType: 'json'
+                data: {},
+                dataType: 'json',
+                timeout: 5000
             });
-
+            //
             request.done(function( data ) {
-console.log('done ajax ', data.msg );
-
-                Ra.channel('ChFooter').trigger('show:msg', data.msg);
+                if(data.msg){
+                    Ra.channel('foo').trigger('show:msg', data.msg);
+                }
             });
-
+            //
             request.fail(function( jqXHR, textStatus ) {
-console.log('fail ajax ', jqXHR, textStatus );
+                const obj = {
+                    type: 'danger',
+                    text: 'Server neodpovedal: ' + textStatus
+                };
+                Ra.channel('foo').trigger('show:msg', obj );
+            });          
+        },
+        doPing: function(options){      
+            //
+            var request = $.ajax({
+                url: '/ping/',
+                method: 'POST',
+                data: {},
+                dataType: 'json',
+                headers: {
+                    'x-token' : this.model.get('token')
+                },
+                timeout: 5000
             });
-
-console.log('doSignout', options);            
-        }        
+            //
+            request.done(function( data ) {
+                if(data.msg){
+                    Ra.channel('foo').trigger('show:msg', data.msg);
+                }
+            });
+            //
+            request.fail(function( jqXHR, textStatus ) {
+                const obj = {
+                    type: 'danger',
+                    text: 'Server neodpovedal: ' + textStatus
+                };
+                Ra.channel('foo').trigger('show:msg', obj );
+            });          
+        }
     });   
 });

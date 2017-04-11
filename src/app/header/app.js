@@ -10,7 +10,7 @@
 define('header.app',['backbone.marionette', 'backbone.radio'], 
     function (Mn, Ra) {
         //        
-        const Ch = Ra.channel('ChHeader');
+        const Ch = Ra.channel('menu');
         //
         const Ct = require('HEADER/cntrl.js');
         //
@@ -18,13 +18,12 @@ define('header.app',['backbone.marionette', 'backbone.radio'],
             controller: new Ct,
             routes: {
                 'menu': 'showMenu',
-                'left': 'showLeft',
-                'right': 'showRight',
-                'lon': 'appLoaderOn',
-                'loff': 'appLoaderOff',
                 'user': 'doUser',
                 'admin': 'doAdmin',
                 'super': 'doSuper'
+            },
+            onRoute: function(name, path, args) {
+                console.log('User navigated to ' + path,name, path, args);
             },
             doUser: function(){
                 Ch.trigger('do:role',{role: ' User'});
@@ -34,21 +33,9 @@ define('header.app',['backbone.marionette', 'backbone.radio'],
             },
             doSuper: function(){
                 Ch.trigger('do:role',{role: ' Super'});
-            },            
-            appLoaderOn: function (){                
-                Ra.channel('ChApp').request('app:lon');                
-            },
-            appLoaderOff: function (){               
-                Ra.channel('ChApp').request('app:loff');             
-            },            
+            },        
             showMenu: function (){                     
                 Ch.trigger('show:menu');
-            },            
-            showLeft: function (){                   
-                Ch.trigger('show:left');
-            },
-            showRight: function (options){                   
-                Ch.trigger('show:right', options);
-            }    
+            }
         });
 });           

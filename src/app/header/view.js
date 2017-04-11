@@ -7,8 +7,8 @@
  * Compiled under Webpack 2 tools
  */
 
-define('header.view', ['backbone.marionette'],
-function ( Mn ) {
+define('header.view', ['backbone.marionette', 'backbone.radio', 'jquery'],
+function ( Mn, Ra, $ ) {
     //
     return { 
         Menu: Mn.View.extend({
@@ -18,12 +18,21 @@ function ( Mn ) {
                 left: '#left',
                 right: '#right'
             },
-     /** reakcie na kliknutie v menu */
-  events: {
-    'click #time': function(event) {
-      console.log('time clicked', event);
-    }
-  }  ,              
+            /** reakcie na kliknutie v menu */
+            events: {
+                'click a.request': function(event) {
+                    const data = $(event.currentTarget).data('request');
+                    if(data.ch && data.ev){
+                        Ra.channel(data.ch).request(data.ev); 
+                    }
+                },
+                'click a.trigger': function(event) {
+                    const data = $(event.currentTarget).data('trigger');
+                    if(data.ch && data.ev){
+                        Ra.channel(data.ch).trigger(data.ev); 
+                    }
+                }
+            },              
             onDestroy: function(){
                 console.log('onDestroy Menu');
             }

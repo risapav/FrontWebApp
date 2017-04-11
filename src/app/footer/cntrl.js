@@ -13,7 +13,7 @@ define('footer.ctrl',['backbone.marionette', 'backbone.radio'],
         const View = require('FOOTER/view.js');         
         //
         return Mn.Object.extend({
-            channelName: 'ChFooter',
+            channelName: 'foo',
             radioEvents: {
                 'show:msg': 'showMsg',
                 'show:cpy': 'showCpy'
@@ -28,7 +28,7 @@ define('footer.ctrl',['backbone.marionette', 'backbone.radio'],
             },
             showMsg: function (options) {                
                 // find App object             
-                const App = Ra.channel('ChApp').request('app:this');
+                const App = Ra.channel('app').request('app:this');
                 // find parent view
                 const paView = App.getView();
                 const chView = new View.Msg(options);
@@ -39,13 +39,13 @@ define('footer.ctrl',['backbone.marionette', 'backbone.radio'],
                 }
                 this.timeout = setTimeout(function(){
                     //
-                    const footerCh = Ra.channel('ChFooter');           
-                    footerCh.trigger('show:cpy');                    
+                    const Ch = Ra.channel('foo');           
+                    Ch.trigger('show:cpy');                    
                 }, App.getOption('msg_delay'));
             },
             showCpy: function () {
                 // find App object           
-                const App = Ra.channel('ChApp').request('app:this');
+                const App = Ra.channel('app').request('app:this');
                 // find parent view
                 const paView = App.getView();
                 paView.showChildView('footer', new View.Cpy);               

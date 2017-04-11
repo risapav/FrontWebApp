@@ -10,7 +10,7 @@
 define('login.app',['backbone.marionette', 'backbone.radio'], 
 function (Mn, Ra) {
     //
-    const Ch = Ra.channel('ChLogin');
+    const Ch = Ra.channel('login');
     //     
     const Ct = require('LOGIN/cntrl.js');
     //
@@ -24,10 +24,10 @@ function (Mn, Ra) {
             'signout': 'Signout'
         },
         Login: function (){           
-            Ch.trigger('do:login');
+            Ch.trigger('login');
         },
         Logout: function (){           
-            Ch.trigger('do:logout');
+            Ch.trigger('logout');
         },
         Signin: function (options){
             Ch.trigger('signin', options);

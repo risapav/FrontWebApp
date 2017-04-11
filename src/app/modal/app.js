@@ -10,7 +10,7 @@
 define('modal.app',['backbone.marionette', 'backbone.radio'], 
 function (Mn, Ra) {
     //
-    const Ch = Ra.channel('ChModal');
+    const Ch = Ra.channel('modal');
     //     
     const Ct = require('MODAL/cntrl.js');
     //

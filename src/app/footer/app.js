@@ -10,7 +10,7 @@
 define('footer.app',['backbone.marionette', 'backbone.radio'], 
     function (Mn, Ra) {
         //
-        const Ch = Ra.channel('ChFooter');
+        const Ch = Ra.channel('foo');
         //     
         const Ct = require('FOOTER/cntrl.js');
         //
@@ -18,8 +18,8 @@ define('footer.app',['backbone.marionette', 'backbone.radio'],
             controller: new Ct,
 
             routes: {
-                'footer': 'showFooter',
-                'footer:message': 'msgFooter'
+                'foo': 'showFooter',
+                'foo:msg': 'msgFooter'
             },
             showFooter: function (){           
                 Ch.trigger('show:cpy');

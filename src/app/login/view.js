@@ -26,31 +26,11 @@ console.log('User', User);
             events: {
                 'submit form': 'signForm'
             },
-            signForm: function(e){
+            signForm: function(e){              
                 e.preventDefault();
-                var data = Sy.serialize(this);
-                this.model.set(data);
-                this.model.save();
-                
-/*                        
-                $('button').bind('click', function() {
-                    $.post('/?ts=' + Date.now(), $('#f').serialize(), function(d) {
-                        var err = $('#error');
-                        if (d instanceof Array) {
-                            err.empty();
-                            d.forEach(function(o) {
-                                err.append('<div>' + o.error + '</div>');
-                            });
-                            err.show();
-                            return;
-                        };
-                        err.hide();
-                        window.location.href = '/';
-                    });
-                });
-*/                
-                const Ch = Ra.channel('ChLogin');
-                Ch.trigger('signin', this.model.toJSON());    
+                const data = Sy.serialize(this);
+                const Ch = Ra.channel('login');
+                Ch.trigger('signin', data); 
             },
             onDestroy: function(){
                 console.log('onDestroy mbody');

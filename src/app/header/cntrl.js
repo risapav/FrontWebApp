@@ -23,7 +23,7 @@ function (Mn, Ba, Ra, Mo) {
         menuView: null,
         leftView: null,
         rightView: null,
-        channelName: 'ChHeader',          
+        channelName: 'menu',          
         radioEvents: {
             'do:role': 'doRole',
             'show:menu': 'showMenu',
@@ -49,11 +49,11 @@ function (Mn, Ba, Ra, Mo) {
             if(data){
                 this.model.set(data);               
             }
-        },
+        },            
         showMenu: function(){
             // find App object           
-            const App = Ra.channel('ChApp').request('app:this');
-Ra.channel('ChApp').request('app:lon');            
+            const App = Ra.channel('app').request('app:this');
+Ra.channel('app').request('app:lon');            
             // prepare views
             this.menuV = new View.Menu();            
             // find parent view            
@@ -74,10 +74,10 @@ Ra.channel('ChApp').request('app:lon');
             }
             this.timeout = setInterval(function(){
                 //
-                const headerCh = Ra.channel('ChHeader');           
+                const headerCh = Ra.channel('menu');           
                 headerCh.trigger('show:time');                    
             }, 1000);  
-Ra.channel('ChApp').request('app:loff');             
+Ra.channel('app').request('app:loff');             
         },
         showTime: function(){ 
             var now = new Mo();

@@ -17,7 +17,7 @@ function (Mn, Ra, _) {
         headerView: null,
         bodyView: null,
         footerView: null,
-        channelName: 'ChModal',
+        channelName: 'modal',
         radioEvents: {
             'show:modal': 'showModal',
             'close:modal': 'closeModal'
@@ -27,7 +27,7 @@ console.log('modal.ctrl onBeforeDestroy');
         },
         closeModal: function(options){
             // find App object           
-            const App = Ra.channel('ChApp').request('app:this');
+            const App = Ra.channel('app').request('app:this');
             // find parent view
             const paView = App.getView();
             const dialogRegion = paView.getRegion('dialog');
@@ -44,7 +44,7 @@ console.log('modal.ctrl onBeforeDestroy');
                 footer: View.footer
             });
             // find App object           
-            const App = Ra.channel('ChApp').request('app:this');
+            const App = Ra.channel('app').request('app:this');
             // prepare views
             this.modalView = new View.modal();            
             // find parent view   
