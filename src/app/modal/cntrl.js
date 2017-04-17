@@ -26,8 +26,8 @@ function (Mn, Ra, _) {
 console.log('modal.ctrl onBeforeDestroy');
         },
         closeModal: function(options){
-            // find App object           
-            const App = Ra.channel('app').request('app:this');
+            // find App object             
+            const App = Ra.request('app','this');
             // find parent view
             const paView = App.getView();
             const dialogRegion = paView.getRegion('dialog');
@@ -43,8 +43,8 @@ console.log('modal.ctrl onBeforeDestroy');
                 body: View.body,
                 footer: View.footer
             });
-            // find App object           
-            const App = Ra.channel('app').request('app:this');
+            // find App object             
+            const App = Ra.request('app','this');
             // prepare views
             this.modalView = new View.modal();            
             // find parent view   

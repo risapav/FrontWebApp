@@ -7,21 +7,21 @@
  * Compiled under Webpack 2 tools
  */
 
-define('about.app',['backbone.radio'], 
+define('app2.app',['backbone.radio'], 
 function (Ra) {
     //
-    const Ct = require('ABOUT/cntrl.js');
+    const Ct = require('APP2/cntrl.js');
     //
     const SubApp = require('LIB/subapp.js');
     //
     return SubApp.extend({
-        options: { name: 'ABOUT', resist: false, ctrl: Ct }, 
-        //   
+        options: { name: 'APP2', resist: false, ctrl: Ct }, 
+        //
         routes: {
-            'about': 'run'
+            'app2': 'run'
         },
-        run: function (){
-            Ra.trigger('app','run','ABOUT');
-        }          
+        run: function (options){
+            Ra.trigger('app','run','APP2');
+        }
     });
-});
+});   

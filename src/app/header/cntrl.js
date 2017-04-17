@@ -25,15 +25,16 @@ function (Mn, Ba, Ra, Mo) {
         rightView: null,
         channelName: 'menu',          
         radioEvents: {
-            'do:role': 'doRole',
+            'role': 'doRole',
             'show:menu': 'showMenu',
             'show:time': 'showTime'
         },
         timeout: null,
-        initialize: function(){
+        initialize: function(){             
             this.model = new Model;
+            Ra.trigger('menu','show:menu');
         },
-        onBeforeDestroy: function(){
+        onBeforeDestroy: function(){          
             //destroy timeout
             if( this.timeout ){
                 clearInterval(this.timeout);
@@ -45,15 +46,14 @@ function (Mn, Ba, Ra, Mo) {
                 this.model = null;
             }
         },
-        doRole: function(data){
+        doRole: function(data){            
             if(data){
-                this.model.set(data);               
+                this.model.set('role',data);               
             }
         },            
         showMenu: function(){
-            // find App object           
-            const App = Ra.channel('app').request('app:this');
-Ra.channel('app').request('app:lon');            
+            // find App object                   
+            const App = Ra.request('app','this');       
             // prepare views
             this.menuV = new View.Menu();            
             // find parent view            
@@ -73,11 +73,9 @@ Ra.channel('app').request('app:lon');
                 clearInterval(this.timeout);
             }
             this.timeout = setInterval(function(){
-                //
-                const headerCh = Ra.channel('menu');           
-                headerCh.trigger('show:time');                    
-            }, 1000);  
-Ra.channel('app').request('app:loff');             
+                //         
+                Ra.trigger('menu','show:time');                    
+            }, 1000);              
         },
         showTime: function(){ 
             var now = new Mo();

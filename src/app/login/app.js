@@ -7,16 +7,16 @@
  * Compiled under Webpack 2 tools
  */
 
-define('login.app',['backbone.marionette', 'backbone.radio'], 
-function (Mn, Ra) {
+define('login.app',['backbone.radio'], 
+function (Ra) {
     //
-    const Ch = Ra.channel('login');
-    //     
     const Ct = require('LOGIN/cntrl.js');
     //
-    return Mn.AppRouter.extend({
-        controller: new Ct,
-
+    const SubApp = require('LIB/subapp.js');
+    //
+    return SubApp.extend({
+        options: { name: 'LOGIN', resist: true, ctrl: Ct }, 
+        //
         routes: {
             'login': 'Login',
             'logout': 'Logout',
@@ -24,13 +24,13 @@ function (Mn, Ra) {
             'signout': 'Signout'
         },
         Login: function (){           
-            Ch.trigger('login');
+            Ra.trigger('login','login');
         },
         Logout: function (){           
-            Ch.trigger('logout');
+            Ra.trigger('login','logout');
         },
         Signin: function (options){
-            Ch.trigger('signin', options);
+            Ra.trigger('login','signin', options);
 /*            
             options = _.extend({
                 model: App.HeaderApp.Show.Model,
@@ -60,7 +60,7 @@ function (Mn, Ra) {
 */            
         },
         SignOut: function (options){
-            Ch.trigger('signout', options);           
+            Ra.trigger('login','signout', options);           
         }
 
     });

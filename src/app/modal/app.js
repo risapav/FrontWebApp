@@ -7,25 +7,25 @@
  * Compiled under Webpack 2 tools
  */
 
-define('modal.app',['backbone.marionette', 'backbone.radio'], 
-function (Mn, Ra) {
+define('modal.app',['backbone.radio'], 
+function (Ra) {
     //
-    const Ch = Ra.channel('modal');
-    //     
     const Ct = require('MODAL/cntrl.js');
     //
-    return Mn.AppRouter.extend({
-        controller: new Ct,
-
+    const SubApp = require('LIB/subapp.js');
+    //
+    return SubApp.extend({
+        options: { name: 'MODAL', resist: true, ctrl: Ct }, 
+        //
         routes: {
             'modal': 'showModal',
             'modal:close': 'closeModal'
         },
         showModal: function (options){           
-            Ch.trigger('show:modal', options);
+            Ra.trigger('modal','show:modal', options);
         },
         closeModal: function (){           
-            Ch.trigger('close:modal');
+            Ra.trigger('modal','close:modal');
         }            
     });
 });   

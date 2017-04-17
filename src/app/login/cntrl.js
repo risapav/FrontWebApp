@@ -12,8 +12,6 @@ function (Mn, Ra, $, _) {
     //       
     const View = require('LOGIN/view.js'); 
     //
-    const Ch = Ra.channel('modal');
-    //
     return Mn.Object.extend({
         channelName: 'login',
         radioEvents: {
@@ -26,7 +24,7 @@ function (Mn, Ra, $, _) {
 console.log('login.ctrl onBeforeDestroy');
         },
         doLogin: function(){
-            Ch.trigger('show:modal', { 
+            Ra.trigger('modal','show:modal', { 
                 header: View.header, 
                 body: View.body
             });
@@ -47,7 +45,7 @@ console.log('doSignin', data, string);
             //
             request.done(function( data ) {
                 if(data.msg){
-                    Ra.channel('foo').trigger('show:msg', data.msg);
+                    Ra.trigger('foo','show:msg', data.msg);
                 }
             });
             //
@@ -56,7 +54,7 @@ console.log('doSignin', data, string);
                     type: 'danger',
                     text: 'Server neodpovedal: ' + textStatus
                 };
-                Ra.channel('foo').trigger('show:msg', obj );
+                Ra.trigger('foo','show:msg', obj );
             });             
         },
         doLogout: function(options){      
@@ -71,7 +69,7 @@ console.log('doSignin', data, string);
             //
             request.done(function( data ) {
                 if(data.msg){
-                    Ra.channel('foo').trigger('show:msg', data.msg);
+                    Ra.trigger('foo','show:msg', data.msg);
                 }
             });
             //
@@ -80,7 +78,7 @@ console.log('doSignin', data, string);
                     type: 'danger',
                     text: 'Server neodpovedal: ' + textStatus
                 };
-                Ra.channel('foo').trigger('show:msg', obj );
+                Ra.trigger('foo','show:msg', obj );
             });          
         },
         doPing: function(options){      
@@ -98,7 +96,7 @@ console.log('doSignin', data, string);
             //
             request.done(function( data ) {
                 if(data.msg){
-                    Ra.channel('foo').trigger('show:msg', data.msg);
+                    Ra.trigger('foo','show:msg', data.msg);
                 }
             });
             //
@@ -107,7 +105,7 @@ console.log('doSignin', data, string);
                     type: 'danger',
                     text: 'Server neodpovedal: ' + textStatus
                 };
-                Ra.channel('foo').trigger('show:msg', obj );
+                Ra.trigger('foo','show:msg', obj );
             });          
         }
     });   

@@ -46,8 +46,7 @@ function ( Mn, Ra ) {
             onModalize: function(region){ 
                 //feedback for close modalize event
                 region.$el.on('hidden.bs.modal', function (e) {
-                    const Ch = Ra.channel('modal');
-                    Ch.trigger('close:modal');
+                    Ra.trigger('modal','close:modal');
                 });         
                 //show modalized view
                 region.$el.modal('show');

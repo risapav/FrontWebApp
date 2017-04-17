@@ -13,6 +13,14 @@ function ( Mn, Ra, $ ) {
     return { 
         Menu: Mn.View.extend({
             template: require('HEADER/menu.tpl'),
+            templateContext: function(){
+                // find App object             
+                const App = Ra.request('app','this');
+                //
+                return {
+                    webname: App.getOption('webname')
+                };   
+            },
             className: 'container-fluid',
             regions: {
                 left: '#left',
@@ -22,14 +30,30 @@ function ( Mn, Ra, $ ) {
             events: {
                 'click a.request': function(event) {
                     const data = $(event.currentTarget).data('request');
-                    if(data.ch && data.ev){
-                        Ra.channel(data.ch).request(data.ev); 
+console.log('click a.request ', data);                    
+                    //channel && event
+                    if(data.c && data.e){
+                        //options
+                        if(!data.o){
+                            data.o = {};
+                        }
+                        //channel event options
+                        Ra.request(data.c, data.e, data.o);                        
+                        //Ra.channel(data.c).request(data.e); 
                     }
                 },
                 'click a.trigger': function(event) {
                     const data = $(event.currentTarget).data('trigger');
-                    if(data.ch && data.ev){
-                        Ra.channel(data.ch).trigger(data.ev); 
+console.log('click a.trigger ', data);                    
+                    //channel && event
+                    if(data.c && data.e){
+                        //options
+                        if(!data.o){
+                            data.o = {};
+                        }
+                        //channel event options
+                        Ra.trigger(data.c, data.e, data.o);
+                        //Ra.channel(data.c).trigger(data.e); 
                     }
                 }
             },              

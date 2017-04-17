@@ -7,35 +7,36 @@
  * Compiled under Webpack 2 tools
  */
 
-define('header.app',['backbone.marionette', 'backbone.radio'], 
-    function (Mn, Ra) {
-        //        
-        const Ch = Ra.channel('menu');
-        //
-        const Ct = require('HEADER/cntrl.js');
-        //
-        return Mn.AppRouter.extend({
-            controller: new Ct,
-            routes: {
-                'menu': 'showMenu',
-                'user': 'doUser',
-                'admin': 'doAdmin',
-                'super': 'doSuper'
-            },
-            onRoute: function(name, path, args) {
-                console.log('User navigated to ' + path,name, path, args);
-            },
-            doUser: function(){
-                Ch.trigger('do:role',{role: ' User'});
-            },
-            doAdmin: function(){
-                Ch.trigger('do:role',{role: ' Admin'});
-            },
-            doSuper: function(){
-                Ch.trigger('do:role',{role: ' Super'});
-            },        
-            showMenu: function (){                     
-                Ch.trigger('show:menu');
-            }
-        });
+define('header.app',['backbone.radio'], 
+function (Ra) {
+    //
+    const Ct = require('HEADER/cntrl.js');
+    //
+    const SubApp = require('LIB/subapp.js');
+    //
+    return SubApp.extend({
+        options: { name: 'HEADER', resist: true, ctrl: Ct }, 
+        //    
+        routes: {
+            'menu': 'showMenu',
+            'user': 'doUser',
+            'admin': 'doAdmin',
+            'super': 'doSuper'
+        },
+        onRoute: function(name, path, args) {
+            console.log('User navigated to ' + path,name, path, args);
+        },
+        doUser: function(){
+            Ra.trigger('menu','role',' User');
+        },
+        doAdmin: function(){
+            Ra.trigger('menu','role',' Admin');
+        },
+        doSuper: function(){
+            Ra.trigger('menu','role',' Super');
+        },        
+        showMenu: function (){                     
+            Ra.trigger('menu','show:menu');
+        }
+    });
 });           

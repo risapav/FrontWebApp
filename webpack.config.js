@@ -30,9 +30,12 @@ var config = {
         main: './src/main.js'
     },
     output: {
-        path: '../BackWebApp/app/public',
+        path: path.join('./','D:/projekty/webapp/BackWebApp/app/public'),
+//        path: path.join('D:/projekty/webapp/BackWebApp/app', 'public'),
+//        publicPath: 'D:/projekty/webapp/BackWebApp/app/public',
+//        path: path.join(__dirname, 'D:/projekty/webapp/BackWebApp/app/public'),
         filename: 'js/[name].js' //['vendor.js','app.js']
-//        publicPath: './static/',
+        
 //        library: 'myLib',
 //        libraryTarget: "amd"
     },
@@ -64,9 +67,9 @@ var config = {
                 loader: "underscore-template-loader",
                 query: {
                     parseMacros: true,
-                    //interpolate: '\\{\\[(.+?)\\]\\}', // {[ value ]}
-                    //evaluate: '\\{%([\\s\\S]+?)%\\}', // {% value %}
-                    //escape: '\\{\\{(.+?)\\}\\}'	// {{ value }}
+//                    interpolate: '\\{\\[(.+?)\\]\\}', // {[ value ]}
+//                    evaluate: '\\{%([\\s\\S]+?)%\\}', // {% value %}
+//                    escape: '\\{\\{(.+?)\\}\\}'	// {{ value }}
                     interpolate: '\\{\\{=(.+?)\\}\\}',	// {{= value }}
                     escape: '\\{\\{-(.+?)\\}\\}',	// {{- value }} 
                     evaluate: '\\{\\{(.+?)\\}\\}' 	// {{ value }}				
@@ -94,13 +97,16 @@ var config = {
     resolve: {
         alias: {
             LESS: path.resolve(__dirname, 'src/less/'),
-            LIB: path.resolve(__dirname, 'src/lib/'),
+            LIB: path.resolve(__dirname, 'src/app/lib/'),
             ENTITIES: path.resolve(__dirname, 'src/app/entities/'),
             ROOT: path.resolve(__dirname, 'src/app/root/'),
             MODAL: path.resolve(__dirname, 'src/app/modal/'),
             LOGIN: path.resolve(__dirname, 'src/app/login/'),
             HEADER: path.resolve(__dirname, 'src/app/header/'),
             FOOTER: path.resolve(__dirname, 'src/app/footer/'),
+            APP1: path.resolve(__dirname, 'src/app/app1/'),
+            APP2: path.resolve(__dirname, 'src/app/app2/'),
+            APP3: path.resolve(__dirname, 'src/app/app3/'),
             ABOUT: path.resolve(__dirname, 'src/app/about/')
         },
         modules: [
@@ -128,7 +134,7 @@ if (env === 'production-single') {
                 screw_ie8: true
             }         
         }), 
-        new webpack.optimize.DedupePlugin(),         
+//        new webpack.optimize.DedupePlugin(),         
         new HtmlWebpackPlugin({
             minify: {
                 collapseWhitespace: false,
@@ -176,7 +182,7 @@ if (env === 'production-multi') {
                 screw_ie8: false
             }         
         }), 
-        new webpack.optimize.DedupePlugin()
+//        new webpack.optimize.DedupePlugin()
 /*      ,  
         new CompressionPlugin({
             asset: "[path].gz[query]",
@@ -184,7 +190,7 @@ if (env === 'production-multi') {
             test: /\.js$|\.html$/,
             threshold: 10240,
             minRatio: 0.8})
-*/      ,         
+*/               
         new HtmlWebpackPlugin({
             minify: {
                 collapseWhitespace: false,

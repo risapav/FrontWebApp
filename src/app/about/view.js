@@ -7,21 +7,22 @@
  * Compiled under Webpack 2 tools
  */
 
-define('about.view', ['backbone.marionette','backbone.radio'],
-    function ( Mn, Radio ) {
-        //       
-        const appChannel = Radio.channel('app');
-        const App = appChannel.request('app:this');
-        //
-        const Template = require('ABOUT/about.tpl');   
-        //
-        return Mn.View.extend({
-            template: _.template(
-                Template({
+define('about.view', [ 'backbone.marionette', 'backbone.radio' ],
+function ( Mn, Ra ) {
+    //
+    return {
+        Msg: Mn.View.extend({
+            className: 'container',
+            template: require('ABOUT/msg.tpl'),
+            templateContext: function(){
+                // find App object             
+                const App = Ra.request('app','this');
+                //
+                return {
                     prgname: App.getOption('prgname'),
                     version: App.getOption('version')
-                })
-            )
-                        
-        });
+                };   
+            }
+        })
+    };
 });

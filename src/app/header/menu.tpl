@@ -4,7 +4,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
     </button>
-    <a class="navbar-brand" href="#menu">WebSiteName</a>
+    <a class="navbar-brand" href="#menu">{{- webname }}</a>
 </div>
 <div class="collapse navbar-collapse">
     <ul id="left" class="nav navbar-nav"></ul>

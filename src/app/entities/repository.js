@@ -18,6 +18,7 @@ function ( Ba, _ ) {
             });
         },
         sync: function(method, model, options){
+console.log('sync ', method, model, options);        
             var self = this,
             config = {
                 beforeSend: function (xhr) {

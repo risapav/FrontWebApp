@@ -6,11 +6,12 @@ A marionettejs javascript demo application.
 Works at frontend browser side
 Compiled under Webpack 2 tools
 -->
+
 <!--aria-labelledby="exampleModalLabel" aria-hidden="true"
  aria-labelledby="myModalLabel" aria-hidden="false"-->
 <div id="dialog" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"></div>
 <!-- loader -->
-<div class="loader" style="display:block;"></div>
+<div class="loader" style="display:none;"></div>
 <!-- Fixed navbar -->
 <!-- <nav class="navbar navbar-inverse"> -->
 <nav id="header" class="navbar navbar-default navbar-fixed-top">Loading... header</nav>

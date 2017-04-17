@@ -7,63 +7,49 @@
  * Compiled under Webpack 2 tools
  */
 
-define('root.app',['backbone', 'backbone.marionette', 'backbone.radio', 'jquery'], 
-function( Bb, Mn, Ra, $) {
+define('root.app',['jquery', 'underscore'], 
+function($, _) {
     //
     const RootView = require('ROOT/view.js');
+    //zoznam vsetkych subApp, ktore budu spustane v aplikacii
+    const Modules = [
+        require('MODAL/app.js'),
+        require('LOGIN/app.js'),
+        require('HEADER/app.js'),
+        require('FOOTER/app.js'),
+        require('ABOUT/app.js'),
+        require('APP1/app.js'),
+        require('APP2/app.js'),
+        require('APP3/app.js')
+    ];
     //
-    const ModalApp = require('MODAL/app.js');     
+    const App = require('LIB/app.js');
     //
-    const LoginApp = require('LOGIN/app.js');     
-    //
-    const HeaderApp = require('HEADER/app.js');
-    //  
-    const FooterApp = require('FOOTER/app.js');  
-   
-    //  
-//    const AboutApp = require('ABOUT/app.js'); 
-//    require("./styles.less");  
-    // Export a function
-    return Mn.Application.extend({
-        channelName: 'app',
+    return App.extend({      
+        modules: Modules,
         region: '#root',
-        radioRequests: {
-            'app:this': 'appThis',
-            'app:lon': 'appLoOn',
-            'app:loff': 'appLoOff'
-        },
-        //vrat 'this' hlavnej aplikacie
-        appThis: function (){
-            return this;
+        radioEvents: function(){
+            return _.extend({},App.prototype.radioEvents,{
+
+            });
+        },        
+        radioRequests: function(){
+            return _.extend({},App.prototype.radioRequests,{
+                //loader on
+                'lon': 'appLoOn',
+                //loader off
+                'loff': 'appLoOff'
+            });
         },
         //zobraz data loader
-        appLoOn: function (){
-            $('.loader').show();
-        },      
+        appLoOn: function (){ $('.loader').show(); },      
         //skry data loader
-        appLoOff: function (){  
-            $('.loader').hide();
-        },         
-        onStart: function () {   
+        appLoOff: function (){ $('.loader').hide(); },         
+        onStart: function () {  
             // create root layout     
             this.showView(new RootView());
-            // create modal
-            this.modalA = new ModalApp();     
-            // create login
-            this.loginA = new LoginApp();             
-            // create footer
-            this.footerA = new FooterApp();
-            Ra.channel('foo').trigger('show:cpy');  
-            // create header                                 
-            this.headerA = new HeaderApp();
-            Ra.channel('menu').trigger('show:menu');
-            //
-//            this.SubApp = new AboutApp();
-//            const aboutChannel = Ra.channel('about');           
-//            aboutChannel.trigger('show:about');
-            // Start history when our application is ready
-            Bb.history.start();
+            //call previous class onStart
+            App.prototype.onStart.call(this);            
         }
     });
 });
-

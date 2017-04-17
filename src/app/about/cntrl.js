@@ -8,21 +8,33 @@
  */
 
 define('about.ctrl',['backbone.marionette', 'backbone.radio'], 
-    function (Mn, Radio) {
-        //       
-        const View = require('ABOUT/view.js');
-        //       
-        const Channel = Radio.channel('ChApp');
-        const App = Channel.request('app:this');
-        //
-        return Mn.Object.extend({
-            channelName: 'ChAbout',
-            radioEvents: {
-                'show:about': 'showAbout'
-            },
-            showAbout: function(){
-                const view = new View();
-                App.view.showChildView('main', view);
-            }
-        });
+function (Mn, Ra) {
+    //       
+    const View = require('ABOUT/view.js');         
+    //
+    return Mn.Object.extend({
+        channelName: 'about',
+        radioEvents: {
+            'show': 'show'
+        },
+        initialize: function(){       
+            Ra.trigger('about','show');
+        },
+        onBeforeDestroy: function(){
+            // find App object             
+            const App = Ra.request('app','this');
+            // find parent view
+            const paView = App.getView();
+            const mainRegion = paView.getRegion('main');
+            mainRegion.empty();           
+        },
+        show: function () {         
+            // find App object             
+            const App = Ra.request('app','this');         
+            // find parent view
+            const paView = App.getView();           
+            const mainRegion = paView.getRegion('main');          
+            mainRegion.show(new View.Msg());                
+        }
+    });   
 });
