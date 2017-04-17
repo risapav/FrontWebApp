@@ -18,13 +18,14 @@ function (Ra) {
         options: { name: 'FOOTER', resist: true, ctrl: Ct }, 
         //
         routes: {
-            'foo': 'showFooter',
-            'foo:msg': 'msgFooter'
+            'foo': 'show',
+            'foo:msg': 'msg'
         },
-        showFooter: function (){           
+        show: function (){           
             Ra.trigger('foo','show:cpy');
         },
-        msgFooter: function (options){              
+        // options = { type: warning', text: 'footer text' }
+        msg: function (options){              
             Ra.trigger('foo','show:msg', options);
         }        
     });

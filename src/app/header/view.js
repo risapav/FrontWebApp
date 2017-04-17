@@ -16,7 +16,7 @@ function ( Mn, Ra, $ ) {
             templateContext: function(){
                 // find App object             
                 const App = Ra.request('app','this');
-                //
+                // 
                 return {
                     webname: App.getOption('webname')
                 };   
@@ -30,7 +30,7 @@ function ( Mn, Ra, $ ) {
             events: {
                 'click a.request': function(event) {
                     const data = $(event.currentTarget).data('request');
-console.log('click a.request ', data);                    
+//                  console.log('click a.request ', data);                    
                     //channel && event
                     if(data.c && data.e){
                         //options
@@ -39,12 +39,11 @@ console.log('click a.request ', data);
                         }
                         //channel event options
                         Ra.request(data.c, data.e, data.o);                        
-                        //Ra.channel(data.c).request(data.e); 
                     }
                 },
                 'click a.trigger': function(event) {
                     const data = $(event.currentTarget).data('trigger');
-console.log('click a.trigger ', data);                    
+                  console.log('click a.trigger ', data);                    
                     //channel && event
                     if(data.c && data.e){
                         //options
@@ -53,7 +52,6 @@ console.log('click a.trigger ', data);
                         }
                         //channel event options
                         Ra.trigger(data.c, data.e, data.o);
-                        //Ra.channel(data.c).trigger(data.e); 
                     }
                 }
             },              
@@ -67,6 +65,7 @@ console.log('click a.trigger ', data);
             modelEvents: {
                 'change:role': 'actOnChange'
             },
+            //zmenila sa premenna v modeli
             actOnChange: function(){
                 this.render();
             },
@@ -80,6 +79,7 @@ console.log('click a.trigger ', data);
             modelEvents: {
                 'change:role': 'actOnChange'
             },
+            //zmenila sa premenna v modeli
             actOnChange: function(){
                 this.render();
             },
@@ -91,13 +91,7 @@ console.log('click a.trigger ', data);
         }),
         Time: Mn.View.extend({
             template: require('HEADER/time.tpl'),
-            el: '#time',
-     /** reakcie na kliknutie v menu */
-  events: {
-    'click #time': function(event) {
-      console.log('time clicked', event);
-    }
-  }  ,         
+            el: '#time',   
             onDestroy: function(){
                 console.log('onDestroy Time');
             }

@@ -15,6 +15,7 @@ function (Mn, Ra) {
     return Mn.Object.extend({
         channelName: 'foo',
         radioEvents: {
+            'info': 'lastMsg',
             'show:msg': 'showMsg',
             'show:cpy': 'showCpy'
         },
@@ -29,6 +30,11 @@ function (Mn, Ra) {
                 this.timeout = null;
             }
         },
+        //zobraz predosle message
+        lastMsg: function(){
+            Ra.trigger('foo','show:msg', {});
+        },
+        // options = { type: warning', text: 'footer text' }
         showMsg: function (options) {                
             // find App object             
             const App = Ra.request('app','this');

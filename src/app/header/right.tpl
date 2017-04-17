@@ -1,9 +1,4 @@
-<li>
-    <a>
-        <span class="glyphicon glyphicon-user"></span>
-        {{= role }}
-    </a>
-</li>
+<li><a><span class="glyphicon glyphicon-user"></span>{{= role }}</a></li>
 
 <li class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown">

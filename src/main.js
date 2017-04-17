@@ -7,7 +7,8 @@
  * Compiled under Webpack 2 tools
  */
         
-require(['ROOT/app.js', 'bootstrap'], function(App){   
+require(['ROOT/app.js', 'bootstrap'], 
+function(App){   
     //    
     const app = new App({
         title: 'Marionette spustene', 
@@ -17,7 +18,9 @@ require(['ROOT/app.js', 'bootstrap'], function(App){
         prgname: 'Demo aplikácia',
         //nazov aplikacie
         webname: 'Web Demo',
-        //spozdenie pocas ktoreho sa zobrazuje info sprava
+        //interval aktualizovania casu [ms]
+        refresh: 500,
+        //spozdenie pocas ktoreho sa zobrazuje info sprava [ms]
         msg_delay: 5000,
         role: 'admin'
     });

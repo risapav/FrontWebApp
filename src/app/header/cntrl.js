@@ -75,11 +75,14 @@ function (Mn, Ba, Ra, Mo) {
             this.timeout = setInterval(function(){
                 //         
                 Ra.trigger('menu','show:time');                    
-            }, 1000);              
+            }, App.getOption('refresh'));              
         },
         showTime: function(){ 
+            //zisti aktualny cas
             var now = new Mo();
+            //preved cas do textu
             var text = now.format('DD.MM.YYYY HH:mm:ss');
+            //zmen text casu v DOM
             document.getElementById('dtText').innerHTML=text;
         }       
     });
